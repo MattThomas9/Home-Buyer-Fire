@@ -6,6 +6,7 @@ import webbrowser
 import requests
 from bs4 import BeautifulSoup
 import pandas as pd
+from getzillowhtml import getzillowhtml
 
 # Read the input file.
 config = configparser.ConfigParser()
@@ -78,39 +79,6 @@ WestDestination = geodesic(kilometers=(SearchBoxHalfWidth * 1.60934)).destinatio
 WestBoundary = WestDestination.longitude
 print("Searching within a square area of half-width", SearchBoxHalfWidth, "miles.")
 
-# Construct the Zillow Recently Sold Homes URL using the search boundary found above.
-ZillowURL = [
-    "https://www.zillow.com/homes/recently_sold/?searchQueryState={"
-    '"pagination":{},'
-    '"mapBounds":{'
-    '"west":'
-    + str(WestBoundary)
-    + ',"east":'
-    + str(EastBoundary)
-    + ',"south":'
-    + str(SouthBoundary)
-    + ',"north":'
-    + str(NorthBoundary)
-    + "},"
-    '"isMapVisible":true,'
-    '"mapZoom":8,'
-    '"filterState":{'
-    '"isForSaleByAgent":{"value":false},'
-    '"isForSaleByOwner":{"value":false},'
-    '"isNewConstruction":{"value":false},'
-    '"isForSaleForeclosure":{"value":false},'
-    '"isComingSoon":{"value":false},'
-    '"isAuction":{"value":false},'
-    '"isPreMarketForeclosure":{"value":false},'
-    '"isPreMarketPreForeclosure":{"value":false},'
-    '"isMakeMeMove":{"value":false},'
-    '"isRecentlySold":{"value":true}},'
-    '"isListVisible":true}'
-]
-
-# Open up the Zillow web page to view the search box, results, and see how many pages there are.
-webbrowser.open_new(ZillowURL[0])
-
 # The headers for the HTTP request below comes from inspecting the zillow url's html code:
 # https://stackoverflow.com/questions/46623658/whats-the-best-way-to-scrape-data-from-zillow.
 req_headers = {
@@ -124,12 +92,24 @@ req_headers = {
                   "Safari/537.36",
 }
 
-# Send an HTTP request to the Zillow URL to obtain the raw HTML data.
-with requests.Session() as s:
-    r = s.get(ZillowURL[0], headers=req_headers)
+# The Zillow Recently Sold Homes HTML and URL for the first/initial page is gathered using getzillowhtml function
+ZillowHTML, ZillowURL = getzillowhtml("Recently Sold",
+                                      None,
+                                      [
+                                          ("North",
+                                           NorthBoundary),
+                                          ("South",
+                                           SouthBoundary),
+                                          ("East",
+                                           EastBoundary),
+                                          ("West",
+                                           WestBoundary)
+                                      ],
+                                      req_headers
+                                      )
 
-# Parse the raw HTML data from the Zillow URL request using Beautiful Soup.
-ZillowHTML = BeautifulSoup(r.content, "html.parser")
+# Open up the Zillow web page to view the search box, results, and see how many pages there are.
+webbrowser.open_new(ZillowURL[0])
 
 # Find the number of pages associated with the Zillow search.
 ZillowPageList = ZillowHTML.find("div", class_="search-pagination")
@@ -184,44 +164,21 @@ for i in range(0, NumZillowPages):
             )
     else:
         # For each page after page one, the Zillow URL must be constructed, requested, parsed, and scraped.
-        # Construct each Zillow URL associated with each subsequent page.
-        ZillowURL.append(
-            "https://www.zillow.com/homes/recently_sold/"
-            + str(i + 1)
-            + "_p/?searchQueryState={"
-            '"pagination":{"currentPage":' + str(i + 1) + "},"
-            '"mapBounds":{'
-            '"west":'
-            + str(WestBoundary)
-            + ',"east":'
-            + str(EastBoundary)
-            + ',"south":'
-            + str(SouthBoundary)
-            + ',"north":'
-            + str(NorthBoundary)
-            + "},"
-            '"isMapVisible":true,'
-            '"mapZoom":15,'
-            '"filterState":{'
-            '"isForSaleByAgent":{"value":false},'
-            '"isForSaleByOwner":{"value":false},'
-            '"isNewConstruction":{"value":false},'
-            '"isForSaleForeclosure":{"value":false},'
-            '"isComingSoon":{"value":false},'
-            '"isAuction":{"value":false},'
-            '"isPreMarketForeclosure":{"value":false},'
-            '"isPreMarketPreForeclosure":{"value":false},'
-            '"isMakeMeMove":{"value":false},'
-            '"isRecentlySold":{"value":true}},'
-            '"isListVisible":true}'
-        )
-
-        # Send an HTTP request to the Zillow URL to obtain the raw HTML data, using the same headers defined above.
-        with requests.Session() as s:
-            r = s.get(ZillowURL[i], headers=req_headers)
-
-        # Parse the raw HTML data from the Zillow URL request using Beautiful Soup.
-        ZillowHTML = BeautifulSoup(r.content, "html.parser")
+        # The Zillow Recently Sold Homes HTML and URL for the subsequent pages is gathered using getzillowhtml function
+        ZillowHTML, ZillowURL = getzillowhtml("Recently Sold",
+                                              i,
+                                              [
+                                                  ("North",
+                                                   NorthBoundary),
+                                                  ("South",
+                                                   SouthBoundary),
+                                                  ("East",
+                                                   EastBoundary),
+                                                  ("West",
+                                                   WestBoundary)
+                                              ],
+                                              req_headers
+                                              )
 
         # Scrape the current Zillow page to obtain all of the sold homes' URL link info.
         SoldHomeZillowLinkInfo = ZillowHTML.find_all("div", class_="list-card-info")
