@@ -5,8 +5,7 @@ from geopy.distance import geodesic
 import webbrowser
 import requests
 from bs4 import BeautifulSoup
-import csv
-
+import pandas as pd
 
 # Read the input file.
 config = configparser.ConfigParser()
@@ -108,6 +107,9 @@ ZillowURL = [
     '"isRecentlySold":{"value":true}},'
     '"isListVisible":true}'
 ]
+
+# Open up the Zillow web page to view the search box, results, and see how many pages there are.
+webbrowser.open_new(ZillowURL[0])
 
 # The headers for the HTTP request below comes from inspecting the zillow url's html code:
 # https://stackoverflow.com/questions/46623658/whats-the-best-way-to-scrape-data-from-zillow.
@@ -249,23 +251,10 @@ else:
         "the Zillow Result Count."
     )
 
-# Loop over each recently sold home Zillow URL and scrape pertinent sold home details and information, and print the
-# results to the screen.
-print(
-    "{:^55s}{:^10s}{:>10s}{:>6s}{:^17s}{:^7s}{:^22s}{:^9s}{:^17s}{:^12s}".format(
-        "Address",
-        "Sell Price",
-        "Bed/Bath",
-        "SqFt",
-        "Type",
-        "Built",
-        "Heating",
-        "Cooling",
-        "Parking",
-        "Lot Size",
-    )
-)
+# Initialize SoldHomeDataList to store sold home details during loop over each recently sold home Zillow link
+SoldHomeDataList = []
 
+# Loop over each recently sold home Zillow URL and scrape pertinent sold home details
 for i in range(0, len(SoldHomeZillowLinks)):
 
     # Send an HTTP request to the Zillow URL to obtain the raw HTML data, using the same headers defined above.
@@ -427,15 +416,13 @@ for i in range(0, len(SoldHomeZillowLinks)):
             SoldHomeLotSize = SoldHomeFactValues[index[0]].text
         except IndexError:
             SoldHomeLotSize = "n/a"
-    # Print the results of the scraping to the screen
-    print(
-        "{:55s}{:>2s}{:>8s}{:>4s}{:^3s}{:3s}{:>6s}"
-        "{:^17}{:^7}{:^22}{:^9}{:^17}{:^12}".format(
+
+    # Append SoldHome information to dataframe
+    SoldHomeDataList.append(
+        [
             SoldHomeAddress,
-            "$",
             SoldHomePrice,
             SoldHomeBeds,
-            "/",
             SoldHomeBaths,
             SoldHomeSqFt,
             SoldHomeType,
@@ -443,6 +430,29 @@ for i in range(0, len(SoldHomeZillowLinks)):
             SoldHomeHeating,
             SoldHomeCooling,
             SoldHomeParking,
-            SoldHomeLotSize,
-        )
+            SoldHomeLotSize
+        ]
     )
+
+# Construct Pandas DataFrame from SoldHomeDataList
+SoldHomeData = pd.DataFrame(
+    SoldHomeDataList,
+    columns=['Address',
+             'Sell Price',
+             'Beds',
+             'Baths',
+             'Home Size',
+             'Home Type',
+             'Year Built',
+             'Heating',
+             'Cooling',
+             'Parking',
+             'Lot Size'
+             ]
+)
+
+# Print SoldHomeData to screen
+pd.set_option('display.max_rows', None,
+              'display.max_columns', None,
+              'display.width', None)
+print(SoldHomeData)
