@@ -1,14 +1,11 @@
-
-
 import requests
 from bs4 import BeautifulSoup
 
-
-def getzillowhtml(pagetype, pagenumber, urlvariables, reqdheaders):
+def getZillowHTML(pagetype, pagenumber, urlvariables, reqdheaders):
     if pagetype == "Recently Sold":
         if len(urlvariables) != 4:
             print(
-                "ERROR!!! getzillowhtml.py requires 4 boundaries to be passed in a list as the second argument \n"
+                "ERROR!!! getZillowHTML.py requires 4 boundaries to be passed in a list as the second argument \n"
                 " when constructing a 'Recently Sold' page. \n"
                 "Zillow Page was not constructed"
             )
@@ -17,7 +14,7 @@ def getzillowhtml(pagetype, pagenumber, urlvariables, reqdheaders):
              "south" not in [x[0].lower() for j, x in enumerate(urlvariables)] or \
              "east" not in [x[0].lower() for j, x in enumerate(urlvariables)] or \
              "west" not in [x[0].lower() for j, x in enumerate(urlvariables)]:
-            print("ERROR!!! getzillowhtml.py requires 'north', 'south', 'east', and 'west' identifiers \n"
+            print("ERROR!!! getzillowHTML.py requires 'north', 'south', 'east', and 'west' identifiers \n"
                   "to be placed in the second argument list as tuples with the value or variable they qualify ")
             return
         else:
