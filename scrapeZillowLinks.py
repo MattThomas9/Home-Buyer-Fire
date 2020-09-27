@@ -1,7 +1,9 @@
 import requests
+from readZillowInput import readZillowInput
 from bs4 import BeautifulSoup
 
-def scrapeZillowLinks(SoldHomeZillowLinks, req_headers):
+
+def scrapeZillowLinks(SoldHomeZillowLinks):
     # Initialize list to hold sold home data during loop over each recently sold home Zillow link
     SoldHomeDataList = []
 
@@ -10,7 +12,7 @@ def scrapeZillowLinks(SoldHomeZillowLinks, req_headers):
 
         # Send an HTTP request to the Zillow URL to obtain the raw HTML data, using the same headers defined above.
         with requests.Session() as s:
-            r = s.get(SoldHomeZillowLinks[i], headers=req_headers)
+            r = s.get(SoldHomeZillowLinks[i], headers=readZillowInput())
         # Parse the raw HTML data from the Zillow URL request using Beautiful Soup.
         ZillowHTML = BeautifulSoup(r.content, "html.parser")
 

@@ -2,10 +2,11 @@ import geopy
 from geopy.geocoders import Nominatim
 from geopy.distance import geodesic
 
+
 def getBox(Address, SearchBoxHalfWidth):
 
     # Nominatim is the GeoCoder class used in this code
-    geolocator = Nominatim(user_agent="my_app_rescrape")
+    geolocator = Nominatim(user_agent="my_app_homeBuyerFire")
 
     # Using the GeoCoder, we obtain the coordinates of the user supplied address, and if the address cannot be found by
     # the GeoCoder, we prompt the user for a new address. If the Address cannot be found, location
@@ -28,8 +29,8 @@ def getBox(Address, SearchBoxHalfWidth):
         else:
             print("The address has been GeoCoded!")
             break
-    # The search box coordinates are obtained via a geodesic measurement from the origin (e.g. user supplied address) to the
-    # direct North, direct East, direct South, and direct West using the user supplied SearchBoxHalfWidth.
+    # The search box coordinates are obtained via a geodesic measurement from the origin (e.g. user supplied address)
+    # to the direct North, direct East, direct South, and direct West using the user supplied SearchBoxHalfWidth.
     # The North Boundary thus becomes the latitude of the geodesic measurement from the origin, and so on.
     NorthDestination = geodesic(kilometers=(SearchBoxHalfWidth * 1.60934)).destination(
     origin, 0.0

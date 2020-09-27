@@ -14,6 +14,7 @@ A program to predict a home's sell price using data scraped from the internet.
 - `geopy`
 - `requests`
 - `pandas`
+- `configparser`
 
 ### List of Files
 
@@ -28,6 +29,7 @@ List all input and output files, even those considered self-explanatory. Link to
 ```
 ./homeBuyerFire.py res.inp
 ```
+Or if running from PyCharm add `res.inp` as a parameter in your run configuration.
 
 ```
 [ADD OUTPUT!]
