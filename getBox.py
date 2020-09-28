@@ -33,21 +33,21 @@ def getBox(Address, SearchBoxHalfWidth):
     # to the direct North, direct East, direct South, and direct West using the user supplied SearchBoxHalfWidth.
     # The North Boundary thus becomes the latitude of the geodesic measurement from the origin, and so on.
     NorthDestination = geodesic(kilometers=(SearchBoxHalfWidth * 1.60934)).destination(
-    origin, 0.0
+        origin, 0.0
     )
     NorthBoundary = NorthDestination.latitude
     EastDestination = geodesic(kilometers=(SearchBoxHalfWidth * 1.60934)).destination(
-    origin, 90.0
+        origin, 90.0
     )
     EastBoundary = EastDestination.longitude
     SouthDestination = geodesic(kilometers=(SearchBoxHalfWidth * 1.60934)).destination(
-    origin, 180.0
+        origin, 180.0
     )
     SouthBoundary = SouthDestination.latitude
     WestDestination = geodesic(kilometers=(SearchBoxHalfWidth * 1.60934)).destination(
-    origin, 270.0
+        origin, 270.0
     )
     WestBoundary = WestDestination.longitude
     print("Searching within a square area of half-width", SearchBoxHalfWidth, "miles.")
 
-    return NorthBoundary, EastBoundary, SouthBoundary, WestBoundary
+    return NorthBoundary, SouthBoundary, EastBoundary, WestBoundary

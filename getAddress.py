@@ -1,5 +1,6 @@
 import configparser
 
+
 def getAddress(inp):
     # Read the input file.
     config = configparser.ConfigParser()

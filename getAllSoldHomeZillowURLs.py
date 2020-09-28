@@ -2,11 +2,11 @@ from buildZillowURL import buildZillowURL
 from getHTML import getHTML
 from getNumZillowPages import getNumZillowPages
 from getNumZillowResults import getNumZillowResults
-from getZillowURLsonPage import getZillowURLsonPage
+from getZillowURLsOnPage import getZillowURLsOnPage
 import webbrowser
 
 
-def getAllSoldHomeZillowURLs(NorthBoundary, EastBoundary, SouthBoundary, WestBoundary):
+def getAllSoldHomeZillowURLs(NorthBoundary, SouthBoundary, EastBoundary, WestBoundary):
 
     # The Zillow Recently Sold Homes URL for the first/initial search page is constructed with buildZillowURL.py
     ZillowURL = buildZillowURL("Recently Sold",
@@ -36,7 +36,7 @@ def getAllSoldHomeZillowURLs(NorthBoundary, EastBoundary, SouthBoundary, WestBou
             # The page one URL was already requested and parsed above; therefore, we scrape it to
             # get all of the unique sold homes' URLs.
             SoldHomeZillowLinks.extend(
-                getZillowURLsonPage(ZillowHTML, ZillowResultCount)
+                getZillowURLsOnPage(ZillowHTML, ZillowResultCount)
             )
 
         else:
@@ -54,7 +54,7 @@ def getAllSoldHomeZillowURLs(NorthBoundary, EastBoundary, SouthBoundary, WestBou
 
             # Scrape the current Zillow search result page to obtain all unique sold homes' URLs.
             SoldHomeZillowLinks.extend(
-                getZillowURLsonPage(ZillowHTML, ZillowResultCount)
+                getZillowURLsOnPage(ZillowHTML, ZillowResultCount)
             )
 
     # All unique Sold Home Zillow URLs from the user's search box are printed to screen, in case the user needs to

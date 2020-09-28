@@ -1,6 +1,6 @@
 
 
-def getZillowURLsonPage(ZillowHTML, ZillowResultCount):
+def getZillowURLsOnPage(ZillowHTML, ZillowResultCount):
     # First we find the class where the unique sold homes URLs reside
     SoldHomeZillowLinkInfo = ZillowHTML.find_all("div", class_="list-card-info")
 

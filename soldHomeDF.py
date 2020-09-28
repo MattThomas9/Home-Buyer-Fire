@@ -1,5 +1,6 @@
 import pandas as pd
 
+
 def soldHomeDF(SoldHomeDataList):
     SoldHomeData = pd.DataFrame(
         SoldHomeDataList,
@@ -23,4 +24,4 @@ def soldHomeDF(SoldHomeDataList):
                   'display.width', None)
     print(SoldHomeData)
 
-    return(SoldHomeData)
+    return SoldHomeData

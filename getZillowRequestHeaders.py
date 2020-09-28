@@ -1,7 +1,7 @@
 import configparser
 
 
-def readZillowInput():
+def getZillowRequestHeaders():
     # Read the input file for Zillow specific inputs.
     config = configparser.ConfigParser()
     config.read("res.inp")
