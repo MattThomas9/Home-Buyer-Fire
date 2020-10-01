@@ -4,3 +4,4 @@ requests
 pandas
 configparser
 nose
+coverage
