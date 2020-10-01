@@ -137,4 +137,7 @@ dmypy.json
 # pytype static type analyzer
 .pytype/
 
+# OS-specific
+.DS_Store
+
 # End of https://www.toptal.com/developers/gitignore/api/python
