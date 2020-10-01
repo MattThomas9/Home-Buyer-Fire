@@ -1,5 +1,6 @@
 # homeBuyerFire
 [![Build Status](https://travis-ci.com/AmritPatel/Home-Buyer-Fire.svg?branch=master)](https://travis-ci.com/AmritPatel/Home-Buyer-Fire)
+[![codecov](https://codecov.io/gh/AmritPatel/Home-Buyer-Fire/branch/master/graph/badge.svg?token=5AJUA8I31G)](undefined)
 
 ## Project Overview
 
