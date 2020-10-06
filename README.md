@@ -32,7 +32,7 @@ List all input and output files, even those considered self-explanatory. Link to
 Starting from the project's parent directory:
 
 ```
-python3 ./src/homeBuyerFire.py [*path to input file*]/res.inp
+python3 ./src/reScrape.py [*path to input file*]/[*inputFilename*]
 ```
 
 ```
