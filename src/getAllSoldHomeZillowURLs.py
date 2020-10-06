@@ -6,7 +6,7 @@ from getZillowURLsOnPage import getZillowURLsOnPage
 import webbrowser
 
 
-def getAllSoldHomeZillowURLs(NorthBoundary, SouthBoundary, EastBoundary, WestBoundary):
+def getAllSoldHomeZillowURLs(NorthBoundary, SouthBoundary, EastBoundary, WestBoundary, RequestHeaders):
 
     # The Zillow Recently Sold Homes URL for the first/initial search page is constructed with buildZillowURL.py
     ZillowURL = buildZillowURL("Recently Sold",
@@ -17,7 +17,7 @@ def getAllSoldHomeZillowURLs(NorthBoundary, SouthBoundary, EastBoundary, WestBou
                                WestBoundary)
 
     # Using the ZillowURL, its HTML is requested and parsed using getHTML function
-    ZillowHTML = getHTML(ZillowURL)
+    ZillowHTML = getHTML(ZillowURL, RequestHeaders)
 
     # Open up the Zillow web page to view the search box, results, and see how many pages there are.
     # webbrowser.open_new(ZillowURL)  # AMRIT IS SO ANNOYING!!!
