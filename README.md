@@ -1,6 +1,6 @@
 # homeBuyerFire
 [![Build Status](https://travis-ci.com/AmritPatel/Home-Buyer-Fire.svg?branch=master)](https://travis-ci.com/AmritPatel/Home-Buyer-Fire)
-[![codecov](https://codecov.io/gh/AmritPatel/Home-Buyer-Fire/branch/master/graph/badge.svg?token=5AJUA8I31G)](undefined)
+[![codecov](https://codecov.io/gh/AmritPatel/Home-Buyer-Fire/branch/master/graph/badge.svg?token=5AJUA8I31G)](https://codecov.io/gh/AmritPatel/Home-Buyer-Fire/)
 [![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2FAmritPatel%2FHome-Buyer-Fire.svg?type=shield)](https://app.fossa.com/projects/git%2Bgithub.com%2FAmritPatel%2FHome-Buyer-Fire?ref=badge_shield)
 
 ## Project Overview
