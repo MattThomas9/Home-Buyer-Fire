@@ -1,0 +1,7 @@
+beautifulsoup4
+geopy
+requests
+pandas
+configparser
+nose
+coverage
