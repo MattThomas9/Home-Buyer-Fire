@@ -6,14 +6,14 @@
 from getHTML import getHTML
 
 
-def scrapeZillowLinks(SoldHomeZillowLinks):
+def scrapeZillowLinks(SoldHomeZillowLinks, headerInput):
     # Initialize list to hold sold home data during loop over each recently sold home Zillow link
     SoldHomeDataList = []
 
     # Loop over each recently sold home Zillow URL and scrape pertinent sold home details
     for link in SoldHomeZillowLinks:
         # First, obtain the HTML from the current Sold Home Zillow URL using getHTML.py
-        ZillowHTML = getHTML(link)
+        ZillowHTML = getHTML(link, headerInput)
 
         # The sold home address is simply taken directly from its own URL.
         SoldHomeAddress = (
