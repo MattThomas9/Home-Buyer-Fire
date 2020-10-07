@@ -1,10 +1,11 @@
+from getHTML import getHTML
+
+
 # Currently, this scraper function cannot scrape information from Zillow web pages that use
 # Java Script to subsequently load webpage details. Java Script transactions on a webpage delay the download
 # of information (i.e. details are not shown until user clicks an "expand" button) which results in the
 # HTTP request not obtaining a "full" response from the server. Selenium WebDriver could be used as a solution
 # to query these JS pages in order to fully acquire all information on a web page.
-from getHTML import getHTML
-
 
 def scrapeZillowLinks(SoldHomeZillowLinks, headerInput):
     # Initialize list to hold sold home data during loop over each recently sold home Zillow link
