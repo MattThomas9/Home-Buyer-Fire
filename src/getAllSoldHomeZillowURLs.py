@@ -50,7 +50,7 @@ def getAllSoldHomeZillowURLs(NorthBoundary, SouthBoundary, EastBoundary, WestBou
                                        WestBoundary)
 
             # Using the ZillowURL, its HTML is requested and parsed using getHTML function
-            ZillowHTML = getHTML(ZillowURL)
+            ZillowHTML = getHTML(ZillowURL, RequestHeaders)
 
             # Scrape the current Zillow search result page to obtain all unique sold homes' URLs.
             SoldHomeZillowLinks.extend(

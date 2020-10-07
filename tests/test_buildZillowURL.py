@@ -2,6 +2,8 @@ from src.buildZillowURL import buildZillowURL
 from nose.tools import assert_equal
 
 
+# Test supporting `getAllSoldHomeZillowURLs.py` functionality.
+
 def test_buildZillowURL():
     obs = buildZillowURL("Recently Sold",
                          None,
