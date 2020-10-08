@@ -1,11 +1,12 @@
-
-
 def getNumZillowResults(ZillowHTML):
     ZillowResultCount = int(
-        (ZillowHTML.find("span", class_="result-count")).text.split()[0].replace(",", "")
+        (ZillowHTML.find("span", class_="result-count"))
+        .text.split()[0]
+        .replace(",", "")
     )
     print(
-        ZillowResultCount, "recently sold homes on Zillow were found within the search box."
+        ZillowResultCount,
+        "recently sold homes on Zillow were found within the search box.",
     )
     # Zillow limits the number of pages of a search to 20, and the number of results/page to 40; therefore, the maximum
     # number of results one can obtain is 800.

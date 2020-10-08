@@ -1,5 +1,3 @@
-
-
 def getZillowURLsOnPage(ZillowHTML, ZillowResultCount):
     # First we find the class where the unique sold homes URLs reside
     SoldHomeZillowLinkInfo = ZillowHTML.find_all("div", class_="list-card-info")
@@ -19,5 +17,7 @@ def getZillowURLsOnPage(ZillowHTML, ZillowResultCount):
     links = []
     for j in range(0, min(ZillowResultCount, 40, len(SoldHomeZillowLinkInfo))):
         # For each unique sold home URL, store the href value (actual URL link).
-        links.append(SoldHomeZillowLinkInfo[j].find("a", class_="list-card-link")["href"])
+        links.append(
+            SoldHomeZillowLinkInfo[j].find("a", class_="list-card-link")["href"]
+        )
     return links

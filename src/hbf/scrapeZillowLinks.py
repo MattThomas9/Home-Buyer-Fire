@@ -1,11 +1,11 @@
 from getHTML import getHTML
 
-
 # Currently, this scraper function cannot scrape information from Zillow web pages that use
 # Java Script to subsequently load webpage details. Java Script transactions on a webpage delay the download
 # of information (i.e. details are not shown until user clicks an "expand" button) which results in the
 # HTTP request not obtaining a "full" response from the server. Selenium WebDriver could be used as a solution
 # to query these JS pages in order to fully acquire all information on a web page.
+
 
 def scrapeZillowLinks(SoldHomeZillowLinks, headerInput):
     # Initialize list to hold sold home data during loop over each recently sold home Zillow link
@@ -18,8 +18,7 @@ def scrapeZillowLinks(SoldHomeZillowLinks, headerInput):
 
         # The sold home address is simply taken directly from its own URL.
         SoldHomeAddress = (
-            link
-            .replace("https://www.zillow.com/homedetails/", "")
+            link.replace("https://www.zillow.com/homedetails/", "")
             .replace("-", " ")
             .split("/", 1)[0]
         )
@@ -32,9 +31,7 @@ def scrapeZillowLinks(SoldHomeZillowLinks, headerInput):
         # an AttributeError exception, where "n/a" is then stored into the SoldHomePrice variable.
         ds_status_details = ZillowHTML.find("span", class_="ds-status-details")
         try:
-            SoldHomePrice = ds_status_details.text.replace(
-                "Sold: $", ""
-            ).replace(
+            SoldHomePrice = ds_status_details.text.replace("Sold: $", "").replace(
                 ",", ""
             )
         except AttributeError:
@@ -50,26 +47,24 @@ def scrapeZillowLinks(SoldHomeZillowLinks, headerInput):
         # characters. If this tag and class are not found, the .find_all() method will return an empty ResultSet.
         # Subsequently, trying to access the [0]th, [1]st, or [2]nd index of an empty ResultSet raises an IndexError
         # exception, where "n/a" is then stored into the SoldHomeBeds, SoldHomeBaths, and SoldHomeSqFt variables.
-        ds_bed_bath_living_area = ZillowHTML.find_all("span", class_="ds-bed-bath-living-area")
+        ds_bed_bath_living_area = ZillowHTML.find_all(
+            "span", class_="ds-bed-bath-living-area"
+        )
         try:
-            SoldHomeBeds = ds_bed_bath_living_area[0].text.replace(
-                " bd", ""
-            )
+            SoldHomeBeds = ds_bed_bath_living_area[0].text.replace(" bd", "")
         except IndexError:
             SoldHomeBeds = "n/a"
 
         try:
-            SoldHomeBaths = ds_bed_bath_living_area[1].text.replace(
-                " ba", ""
-            )
+            SoldHomeBaths = ds_bed_bath_living_area[1].text.replace(" ba", "")
         except IndexError:
             SoldHomeBaths = "n/a"
 
         try:
-            SoldHomeSqFt = ds_bed_bath_living_area[2].text.replace(
-                ",", ""
-            ).replace(
-                "Square Feet", "SqFt"
+            SoldHomeSqFt = (
+                ds_bed_bath_living_area[2]
+                .text.replace(",", "")
+                .replace("Square Feet", "SqFt")
             )
         except IndexError:
             SoldHomeSqFt = "n/a"
@@ -86,13 +81,17 @@ def scrapeZillowLinks(SoldHomeZillowLinks, headerInput):
         # are not found, the .find_all() method will return an empty ResultSet. Subsequently, trying to access the
         # [0]th, [1]st, [2]nd, ..., or [n]th index of an empty ResultSet raises an IndexError exception, where "n/a" is
         # then stored into the corresponding variables.
-        ds_home_fact_list_item = ZillowHTML.find_all("li", class_="ds-home-fact-list-item")
+        ds_home_fact_list_item = ZillowHTML.find_all(
+            "li", class_="ds-home-fact-list-item"
+        )
         try:
             SoldHomeType = ds_home_fact_list_item[0].text.replace("Type:", "")
         except IndexError:
             SoldHomeType = "n/a"
         try:
-            SoldHomeYearBuilt = ds_home_fact_list_item[1].text.replace("Year built:", "")
+            SoldHomeYearBuilt = ds_home_fact_list_item[1].text.replace(
+                "Year built:", ""
+            )
         except IndexError:
             SoldHomeYearBuilt = "n/a"
         try:
@@ -108,7 +107,9 @@ def scrapeZillowLinks(SoldHomeZillowLinks, headerInput):
         except IndexError:
             SoldHomeParking = "n/a"
         try:
-            SoldHomeLotSize = ds_home_fact_list_item[5].text.replace("Lot:", "").replace(",", "")
+            SoldHomeLotSize = (
+                ds_home_fact_list_item[5].text.replace("Lot:", "").replace(",", "")
+            )
         except IndexError:
             SoldHomeLotSize = "n/a"
 
@@ -125,7 +126,7 @@ def scrapeZillowLinks(SoldHomeZillowLinks, headerInput):
                 SoldHomeHeating,
                 SoldHomeCooling,
                 SoldHomeParking,
-                SoldHomeLotSize
+                SoldHomeLotSize,
             ]
         )
 

@@ -6,15 +6,14 @@ from getZillowURLsOnPage import getZillowURLsOnPage
 import webbrowser
 
 
-def getAllSoldHomeZillowURLs(NorthBoundary, SouthBoundary, EastBoundary, WestBoundary, RequestHeaders):
+def getAllSoldHomeZillowURLs(
+    NorthBoundary, SouthBoundary, EastBoundary, WestBoundary, RequestHeaders
+):
 
     # The Zillow Recently Sold Homes URL for the first/initial search page is constructed with buildZillowURL.py
-    ZillowURL = buildZillowURL("Recently Sold",
-                               None,
-                               NorthBoundary,
-                               SouthBoundary,
-                               EastBoundary,
-                               WestBoundary)
+    ZillowURL = buildZillowURL(
+        "Recently Sold", None, NorthBoundary, SouthBoundary, EastBoundary, WestBoundary
+    )
 
     # Using the ZillowURL, its HTML is requested and parsed using getHTML function
     ZillowHTML = getHTML(ZillowURL, RequestHeaders)
@@ -42,12 +41,14 @@ def getAllSoldHomeZillowURLs(NorthBoundary, SouthBoundary, EastBoundary, WestBou
         else:
             # For each page after page one, the Zillow URL must be constructed, requested, parsed, and scraped.
             # The Zillow Recently Sold Homes URL for the subsequent search pages is constructed with buildZillowURL.py
-            ZillowURL = buildZillowURL("Recently Sold",
-                                       i,
-                                       NorthBoundary,
-                                       SouthBoundary,
-                                       EastBoundary,
-                                       WestBoundary)
+            ZillowURL = buildZillowURL(
+                "Recently Sold",
+                i,
+                NorthBoundary,
+                SouthBoundary,
+                EastBoundary,
+                WestBoundary,
+            )
 
             # Using the ZillowURL, its HTML is requested and parsed using getHTML function
             ZillowHTML = getHTML(ZillowURL, RequestHeaders)
