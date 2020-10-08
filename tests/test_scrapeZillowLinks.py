@@ -1,4 +1,4 @@
-from src.hbf.scrapeZillowLinks import scrapeZillowLinks
+from scrapeZillowLinks import scrapeZillowLinks
 from nose.tools import assert_equal
 
 

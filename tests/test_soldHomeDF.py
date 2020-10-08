@@ -1,4 +1,4 @@
-from src.hbf.soldHomeDF import soldHomeDF
+from soldHomeDF import soldHomeDF
 import pandas as pd
 from nose.tools import assert_equal
 

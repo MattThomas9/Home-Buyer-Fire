@@ -1,4 +1,4 @@
-from src.hbf.getBox import getBox
+from getBox import getBox
 from nose.tools import assert_equal
 
 
