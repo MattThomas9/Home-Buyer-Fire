@@ -1,5 +1,3 @@
-
-
 def getNumZillowPages(ZillowHTML):
     # Search through the ZillowHTML to try and find the class where page numbers are kept
     ZillowPageList = ZillowHTML.find("div", class_="search-pagination")
