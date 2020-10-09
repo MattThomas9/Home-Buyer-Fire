@@ -1,4 +1,4 @@
-from getHTML import getHTML
+from src.hbf.getHTML import getHTML
 
 # Currently, this scraper function cannot scrape information from Zillow web pages that use
 # Java Script to subsequently load webpage details. Java Script transactions on a webpage delay the download

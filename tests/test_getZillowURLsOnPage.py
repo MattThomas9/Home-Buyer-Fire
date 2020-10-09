@@ -1,5 +1,5 @@
-from getHTML import getHTML
-from getZillowURLsOnPage import getZillowURLsOnPage
+from src.hbf.getHTML import getHTML
+from src.hbf.getZillowURLsOnPage import getZillowURLsOnPage
 import re
 from nose.tools import assert_equal
 
