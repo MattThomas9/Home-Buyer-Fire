@@ -5,3 +5,5 @@ pandas
 configparser
 nose
 coverage
+pre-commit
+black
