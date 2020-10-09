@@ -27,8 +27,6 @@ List all input and output files, even those considered self-explanatory. Link to
 
 #### Input
 
-TEST!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-
 #### Output
 
 ### Example
