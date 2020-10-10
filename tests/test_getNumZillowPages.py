@@ -1,5 +1,5 @@
-from src.hbf.getHTML import getHTML
-from src.hbf.getNumZillowPages import getNumZillowPages
+from getHTML import getHTML
+from getNumZillowPages import getNumZillowPages
 from nose.tools import assert_equal
 
 

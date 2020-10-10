@@ -1,8 +1,8 @@
-from src.hbf.buildZillowURL import buildZillowURL
-from src.hbf.getHTML import getHTML
-from src.hbf.getNumZillowPages import getNumZillowPages
-from src.hbf.getNumZillowResults import getNumZillowResults
-from src.hbf.getZillowURLsOnPage import getZillowURLsOnPage
+from buildZillowURL import buildZillowURL
+from getHTML import getHTML
+from getNumZillowPages import getNumZillowPages
+from getNumZillowResults import getNumZillowResults
+from getZillowURLsOnPage import getZillowURLsOnPage
 import webbrowser
 
 
