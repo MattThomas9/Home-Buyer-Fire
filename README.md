@@ -27,8 +27,6 @@ List all input and output files, even those considered self-explanatory. Link to
 
 #### Input
 
-amrit is dum
-
 #### Output
 
 ### Example
@@ -72,4 +70,4 @@ the Zillow Result Count that was scraped from the initial page.
 
 
 ## License
-[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2FAmritPatel%2FHome-Buyer-Fire.svg?type=large)](https://app.fossa.com/projects/git%2Bgithub.com%2FAmritPatel%2FHome-Buyer-Fire?ref=badge_large)
+[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2FMattThomas9%2FHome-Buyer-Fire.svg?type=large)](https://app.fossa.com/projects/git%2Bgithub.com%2FMattThomas9%2FHome-Buyer-Fire?ref=badge_large)
