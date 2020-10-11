@@ -1,20 +1,24 @@
 
 
 def laundry(dirtyLaundry):
-    # remove "SqFt" and "sqft" unit labels
-    # dirtyLaundry = dirtyLaundry.replace({'SqFt': '', 'sqft': ''}, regex=True)
-
-    # change Sell Price, Beds, Baths, and Home Size columns into float type
-    # dirtyLaundry['Sell Price'] = dirtyLaundry['Sell Price'].astype(float)
-    # dirtyLaundry['Beds'] = dirtyLaundry['Beds'].astype(float)
-    # dirtyLaundry['Baths'] = dirtyLaundry['Baths'].astype(float)
-    # dirtyLaundry['Home Size'] = dirtyLaundry['Home Size'].astype(float)
-
-    # change Year Built column into integer type
-    # dirtyLaundry['Year Built'] = dirtyLaundry['Year Built'].astype(int)
 
     # loop over each row in the data frame
     for i, row in dirtyLaundry.iterrows():
+
+        # remove 'SqFt' string from current row in column 'Home Size'
+        if 'SqFt' in row['Home Size']:
+
+            # first, split the current element into a list that contains the home size value and the 'SqFt' string
+            homeSize = row['Home Size'].split()
+
+            # next, remove the string 'SqFt' from the list
+            homeSize.remove('SqFt')
+
+            # next, convert the leftover string value to a float
+            homeSize = list(map(float, homeSize))
+
+            # finally, replace the original dataframe element with new value
+            dirtyLaundry.at[i, 'Home Size'] = homeSize[0]
 
         # remove 'sqft' string from current row in column 'Lot Size'
         if 'sqft' in row['Lot Size']:  # said as: if 'sqft' is in the current row of column 'Lot Size'
@@ -49,5 +53,16 @@ def laundry(dirtyLaundry):
             # finally, replace the original dataframe element with new value
             dirtyLaundry.at[i, 'Lot Size'] = lotSize[0]
 
+    # convert Sell Price, Beds, Baths, Home Size, and Lot Size columns into float type
+    dirtyLaundry['Sell Price'] = dirtyLaundry['Sell Price'].astype(float)
+    dirtyLaundry['Beds'] = dirtyLaundry['Beds'].astype(float)
+    dirtyLaundry['Baths'] = dirtyLaundry['Baths'].astype(float)
+    dirtyLaundry['Home Size'] = dirtyLaundry['Home Size'].astype(float)
+    dirtyLaundry['Lot Size'] = dirtyLaundry['Lot Size'].astype(float)
+
+    # change Year Built column into integer type
+    dirtyLaundry['Year Built'] = dirtyLaundry['Year Built'].astype(int)
+
     print(dirtyLaundry)
+    print(dirtyLaundry.dtypes)
     return
