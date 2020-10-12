@@ -1,5 +1,5 @@
-from getHTML import getHTML
-from getNumZillowResults import getNumZillowResults
+from rescrape.getHTML import getHTML
+from rescrape.getNumZillowResults import getNumZillowResults
 from nose.tools import assert_equal
 
 

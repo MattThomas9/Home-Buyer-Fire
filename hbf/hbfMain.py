@@ -1,11 +1,11 @@
 import sys
-from getInput import getInput
-from getAddress import getAddress
-from getBox import getBox
-from getAllSoldHomeZillowURLs import getAllSoldHomeZillowURLs
-from scrapeZillowLinks import scrapeZillowLinks
-from soldHomeDF import soldHomeDF
-from laundry import laundry
+from rescrape.getInput import getInput
+from rescrape.getAddress import getAddress
+from rescrape.getBox import getBox
+from rescrape.getAllSoldHomeZillowURLs import getAllSoldHomeZillowURLs
+from rescrape.scrapeZillowLinks import scrapeZillowLinks
+from rescrape.soldHomeDF import soldHomeDF
+from rescrape.laundry import laundry
 
 # Step 0: Get input parameters from file.
 (

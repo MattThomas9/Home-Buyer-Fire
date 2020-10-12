@@ -34,7 +34,7 @@ List all input and output files, even those considered self-explanatory. Link to
 Starting from the project's parent directory:
 
 ```
-python3 ./src/reScrape.py [*path to input file*]/[*inputFilename*]
+python3 hbf/hbfMain.py [*path to input file*]/[*inputFilename*]
 ```
 
 ```
