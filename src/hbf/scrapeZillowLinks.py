@@ -23,95 +23,83 @@ def scrapeZillowLinks(SoldHomeZillowLinks, headerInput):
             .split("/", 1)[0]
         )
 
-        # First, we search for the home's sell price. We use a try/except query in case the search for the sell price
-        # comes back none/empty. For the sold home price, ZillowHTML.find("span", class_="ds-status-details") searches
-        # for the Zillow HTML "span" tag and "ds-status-details" class. If this tag and class are found, the sold home
-        # price is scraped by obtaining the text of the result and removing unwanted characters. If this tag and class
-        # are not found, the .find() method will return a NoneType. Subsequently, the .text method on a NoneType raises
-        # an AttributeError exception, where "n/a" is then stored into the SoldHomePrice variable.
+        # First, we search for the home's sell price. In Zillow, this variable is under a
+        # "span" class="ds-status-details" tag. The find method will find this variable and store it into a tag
+        # (i.e. ds_status_details). Generally, Zillow will show "Sold" and the sell price in this tag. Therefore, we
+        # check this tag for the key word "sold" that we know will generally be contained in the tag's text. If the key
+        # word is found in the tag's text, then we store the text found in the tag into the appropriate variable while
+        # removing the unwanted characters. If the key word is not found, then the appropriate variable will retain its
+        # initialization value of "n/a".
         ds_status_details = ZillowHTML.find("span", class_="ds-status-details")
-        try:
-            SoldHomePrice = ds_status_details.text.replace("Sold: $", "").replace(
-                ",", ""
-            )
-        except AttributeError:
-            SoldHomePrice = "n/a"
+        SoldHomePrice = "n/a"
+        if "sold" in ds_status_details.text.lower():
+            SoldHomePrice = ds_status_details.text.replace("Sold", "").replace(": $", "").replace(",", "")
 
-        # Next, we search for the number of beds, baths, and the home's square footage. We use a try/except query in
-        # case the search for this information comes back none/empty. For this information,
-        # ZillowHTML.find_all("span", class_="ds-bed-bath-living-area") searches for the Zillow HTML "span" tag and
-        # "ds-bed-bath-living-area" class. If this tag and class are found, the number of beds, baths, and square
-        # footage is scraped by obtaining the text of the result, where the result (i.e. ds_bed_bath_living_area) is a
-        # python ResultSet such that ds_bed_bath_living_area[0] contains number of beds, ds_bed_bath_living_area[1]
-        # contains number of baths, and ds_bed_bath_living_area[2] contains square footage, and removing unwanted
-        # characters. If this tag and class are not found, the .find_all() method will return an empty ResultSet.
-        # Subsequently, trying to access the [0]th, [1]st, or [2]nd index of an empty ResultSet raises an IndexError
-        # exception, where "n/a" is then stored into the SoldHomeBeds, SoldHomeBaths, and SoldHomeSqFt variables.
+        # Next, we search for the number of beds, baths, and the home's square footage. In Zillow, each one of these
+        # variables is under a "span" class="ds-bed-bath-living-area" tag. The find_all method will find each one of
+        # these variables and store them into a result set (i.e. ds_bed_bath_living_area). Each item of the result set
+        # will either contain number of beds and "bd", number of baths and "ba", or the home's square footage and
+        # "Square Feet". We loop over the result set checking each item for key words that we know will be contained in
+        # the item's text. If the key word is found in the item's text, then we store the text found in the item into
+        # the appropriate variable while removing the unwanted characters. If the key word is not found, then the
+        # appropriate variable will retain its initialization value of "n/a".
         ds_bed_bath_living_area = ZillowHTML.find_all(
             "span", class_="ds-bed-bath-living-area"
         )
-        try:
-            SoldHomeBeds = ds_bed_bath_living_area[0].text.replace(" bd", "")
-        except IndexError:
-            SoldHomeBeds = "n/a"
+        SoldHomeBeds = "n/a"
+        SoldHomeBaths = "n/a"
+        SoldHomeSqFt = "n/a"
+        for item in ds_bed_bath_living_area:
+            if "bd" in item.text.lower():
+                SoldHomeBeds = item.text.replace(" bd", "")
+                continue
+            if "ba" in item.text.lower():
+                SoldHomeBaths = item.text.replace(" ba", "")
+                continue
+            if "square feet" in item.text.lower():
+                SoldHomeSqFt = item.text.replace(",", "").replace("Square Feet", "SqFt")
+                continue
 
-        try:
-            SoldHomeBaths = ds_bed_bath_living_area[1].text.replace(" ba", "")
-        except IndexError:
-            SoldHomeBaths = "n/a"
-
-        try:
-            SoldHomeSqFt = (
-                ds_bed_bath_living_area[2]
-                .text.replace(",", "")
-                .replace("Square Feet", "SqFt")
-            )
-        except IndexError:
-            SoldHomeSqFt = "n/a"
-
-        # Next, we search for the home type, year built, heating, cooling, parking, and lot size. We use a try/except
-        # query in case the search for this information comes back none/empty. For this information,
-        # ZillowHTML.find_all("li", class_="ds-home-fact-list-item") searches for the Zillow HTML "li" tag and
-        # "ds-home-fact-list-item" class. If this tag and class are found, the home type, year built, heating type,
-        # cooling type, parking type, and lot size are scraped by obtaining the text of the result, where the result
-        # (i.e. ds_home_fact_list_item) is a python ResultSet such that ds_home_fact_list_item[0] contains home type,
-        # ds_home_fact_list_item[1] contains year built, ds_home_fact_list_item[2] contains heating type,
-        # ds_home_fact_list_item[3] contains cooling type, ds_home_fact_list_item[4] contains parking type,
-        # and ds_home_fact_list_item[5] contains the lot size, and removing unwanted characters. If this tag and class
-        # are not found, the .find_all() method will return an empty ResultSet. Subsequently, trying to access the
-        # [0]th, [1]st, [2]nd, ..., or [n]th index of an empty ResultSet raises an IndexError exception, where "n/a" is
-        # then stored into the corresponding variables.
-        ds_home_fact_list_item = ZillowHTML.find_all(
+        # Next, we search for the home type, year built, heating, cooling, parking, and lot size. In Zillow, each one of
+        # these variables is under a "li" class="ds-home-fact-list-item" tag. The find_all method will find each one of
+        # these variables and store them into a result set (i.e. ds_home_fact_list_items). Each item of the result set
+        # has a child "span" class="ds-home-fact-label" tag AND a child "span" class="ds-home-fact-value" tag. For
+        # example, for "home type" information (generally the first item in the result set), there will be a
+        # child "span" class="ds-home-fact-label" tag that will contain the text "Type" and there will be a
+        # child "span" class="ds-home-fact-value" tag that will contain the text "Single Family". We loop over the
+        # result set checking each item's "label" tag for key words that we know will be contained in the item's
+        # "span" class="ds-home-fact-label" tag. If the key word is found in the item's child
+        # "span" class="ds-home-fact-label" tag, then we store the text found in the item's adjacent child
+        # "span" class="ds-home-fact-value" tag into the appropriate variable while removing the unwanted characters.
+        # If the key word is not found, then the appropriate variable will retain its initialization value of "n/a".
+        ds_home_fact_list_items = ZillowHTML.find_all(
             "li", class_="ds-home-fact-list-item"
         )
-        try:
-            SoldHomeType = ds_home_fact_list_item[0].text.replace("Type:", "")
-        except IndexError:
-            SoldHomeType = "n/a"
-        try:
-            SoldHomeYearBuilt = ds_home_fact_list_item[1].text.replace(
-                "Year built:", ""
-            )
-        except IndexError:
-            SoldHomeYearBuilt = "n/a"
-        try:
-            SoldHomeHeating = ds_home_fact_list_item[2].text.replace("Heating:", "")
-        except IndexError:
-            SoldHomeHeating = "n/a"
-        try:
-            SoldHomeCooling = ds_home_fact_list_item[3].text.replace("Cooling:", "")
-        except IndexError:
-            SoldHomeCooling = "n/a"
-        try:
-            SoldHomeParking = ds_home_fact_list_item[4].text.replace("Parking:", "")
-        except IndexError:
-            SoldHomeParking = "n/a"
-        try:
-            SoldHomeLotSize = (
-                ds_home_fact_list_item[5].text.replace("Lot:", "").replace(",", "")
-            )
-        except IndexError:
-            SoldHomeLotSize = "n/a"
+        SoldHomeType = "n/a"
+        SoldHomeYearBuilt = "n/a"
+        SoldHomeHeating = "n/a"
+        SoldHomeCooling = "n/a"
+        SoldHomeParking = "n/a"
+        SoldHomeLotSize = "n/a"
+        for item in ds_home_fact_list_items:
+            if "type" in item.find("span", class_="ds-home-fact-label").text.lower():
+                SoldHomeType = item.find("span", class_="ds-home-fact-value").text
+                continue
+            if "year built" in item.find("span", class_="ds-home-fact-label").text.lower():
+                SoldHomeYearBuilt = item.find("span", class_="ds-home-fact-value").text
+                continue
+            if "heating" in item.find("span", class_="ds-home-fact-label").text.lower():
+                SoldHomeHeating = item.find("span", class_="ds-home-fact-value").text
+                continue
+            if "cooling" in item.find("span", class_="ds-home-fact-label").text.lower():
+                SoldHomeCooling = item.find("span", class_="ds-home-fact-value").text
+                continue
+            if "parking" in item.find("span", class_="ds-home-fact-label").text.lower():
+                SoldHomeParking = item.find("span", class_="ds-home-fact-value").text
+                continue
+            if "lot" in item.find("span", class_="ds-home-fact-label").text.lower():
+                SoldHomeLotSize = item.find("span", class_="ds-home-fact-value").text.replace(",", "")
+                continue
 
         # Append SoldHome information to list
         SoldHomeDataList.append(
