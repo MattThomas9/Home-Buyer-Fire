@@ -8,10 +8,11 @@ def laundry(dirtyLaundry):
     )
     # loop over each row in the data frame and clean
     for i, row in dirtyLaundry.iterrows():
+
+
+
         # remove 'SqFt' string from current row in column 'Home Size'
-        if row['Home Size'].isnull():
-            continue
-        elif 'SqFt' in row['Home Size']:
+        if 'SqFt' in row['Home Size']:
             # first, split the current element into a list that contains the home size value and the 'SqFt' string
             homeSize = row['Home Size'].split()
             # next, remove the string 'SqFt' from the list
@@ -21,11 +22,7 @@ def laundry(dirtyLaundry):
             # finally, replace the original dataframe element with new value
             dirtyLaundry.at[i, 'Home Size'] = homeSize[0]
         # remove 'sqft' string from current row in column 'Lot Size'
-        print('i: ', i, ' row[lot size]: ', row['Lot Size'])
-        if row['Lot Size'].isnull():  # UGH NEED TO FIX THIS............................................................
-            print('yeet')
-            continue
-        elif 'sqft' in row['Lot Size']:  # said as: if 'sqft' is in the current row of column 'Lot Size'
+        if 'sqft' in row['Lot Size']:  # said as: if 'sqft' is in the current row of column 'Lot Size'
             # first, split the current element into a list that contains the lot size value and the 'sqft' string
             lotSize = row['Lot Size'].split()
             # next, remove the string 'sqft' from the list
