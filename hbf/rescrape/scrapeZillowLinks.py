@@ -1,4 +1,4 @@
-from getHTML import getHTML
+from rescrape.getHTML import getHTML
 
 # Currently, this scraper function cannot scrape information from Zillow web pages that use
 # Java Script to subsequently load webpage details. Java Script transactions on a webpage delay the download
@@ -33,7 +33,11 @@ def scrapeZillowLinks(SoldHomeZillowLinks, headerInput):
         ds_status_details = ZillowHTML.find("span", class_="ds-status-details")
         SoldHomePrice = "n/a"
         if "sold" in ds_status_details.text.lower():
-            SoldHomePrice = ds_status_details.text.replace("Sold", "").replace(": $", "").replace(",", "")
+            SoldHomePrice = (
+                ds_status_details.text.replace("Sold", "")
+                .replace(": $", "")
+                .replace(",", "")
+            )
 
         # Next, we search for the number of beds, baths, and the home's square footage. In Zillow, each one of these
         # variables is under a "span" class="ds-bed-bath-living-area" tag. The find_all method will find each one of
@@ -85,7 +89,10 @@ def scrapeZillowLinks(SoldHomeZillowLinks, headerInput):
             if "type" in item.find("span", class_="ds-home-fact-label").text.lower():
                 SoldHomeType = item.find("span", class_="ds-home-fact-value").text
                 continue
-            if "year built" in item.find("span", class_="ds-home-fact-label").text.lower():
+            if (
+                "year built"
+                in item.find("span", class_="ds-home-fact-label").text.lower()
+            ):
                 SoldHomeYearBuilt = item.find("span", class_="ds-home-fact-value").text
                 continue
             if "heating" in item.find("span", class_="ds-home-fact-label").text.lower():
@@ -98,7 +105,9 @@ def scrapeZillowLinks(SoldHomeZillowLinks, headerInput):
                 SoldHomeParking = item.find("span", class_="ds-home-fact-value").text
                 continue
             if "lot" in item.find("span", class_="ds-home-fact-label").text.lower():
-                SoldHomeLotSize = item.find("span", class_="ds-home-fact-value").text.replace(",", "")
+                SoldHomeLotSize = item.find(
+                    "span", class_="ds-home-fact-value"
+                ).text.replace(",", "")
                 continue
 
         # Append SoldHome information to list

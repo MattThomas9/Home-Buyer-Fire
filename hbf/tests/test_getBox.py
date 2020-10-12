@@ -1,4 +1,4 @@
-from getBox import getBox
+from rescrape.getBox import getBox
 from nose.tools import assert_equal
 
 
