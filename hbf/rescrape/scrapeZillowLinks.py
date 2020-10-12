@@ -60,8 +60,8 @@ def scrapeZillowLinks(SoldHomeZillowLinks, headerInput):
             if "ba" in item.text.lower():
                 SoldHomeBaths = item.text.replace(" ba", "")
                 continue
-            if "square feet" in item.text.lower():
-                SoldHomeSqFt = item.text.replace(",", "").replace("Square Feet", "SqFt")
+            if "square feet" in item.text.lower() or "sqft" in item.text.lower():
+                SoldHomeSqFt = item.text.replace(",", "").replace("Square Feet", "sqft")
                 continue
 
         # Next, we search for the home type, year built, heating, cooling, parking, and lot size. In Zillow, each one of
