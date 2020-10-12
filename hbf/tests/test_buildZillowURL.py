@@ -1,4 +1,4 @@
-from buildZillowURL import buildZillowURL
+from rescrape.buildZillowURL import buildZillowURL
 from nose.tools import assert_equal
 
 

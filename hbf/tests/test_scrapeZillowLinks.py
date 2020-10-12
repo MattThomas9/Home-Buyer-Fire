@@ -1,4 +1,4 @@
-from scrapeZillowLinks import scrapeZillowLinks
+from rescrape.scrapeZillowLinks import scrapeZillowLinks
 from nose.tools import assert_equal
 
 

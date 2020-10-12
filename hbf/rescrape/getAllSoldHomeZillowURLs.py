@@ -1,8 +1,8 @@
-from buildZillowURL import buildZillowURL
-from getHTML import getHTML
-from getNumZillowPages import getNumZillowPages
-from getNumZillowResults import getNumZillowResults
-from getZillowURLsOnPage import getZillowURLsOnPage
+from rescrape.buildZillowURL import buildZillowURL
+from rescrape.getHTML import getHTML
+from rescrape.getNumZillowPages import getNumZillowPages
+from rescrape.getNumZillowResults import getNumZillowResults
+from rescrape.getZillowURLsOnPage import getZillowURLsOnPage
 import webbrowser
 
 
