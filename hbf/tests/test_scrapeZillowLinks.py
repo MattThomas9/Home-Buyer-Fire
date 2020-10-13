@@ -21,7 +21,7 @@ def test_scrapeZillowLinks():
             "293000",
             "2",
             "2",
-            "1526 SqFt",
+            "1526 sqft",
             "Single Family",
             "1951",
             "Forced air",

@@ -11,7 +11,13 @@ def laundry(dirtyLaundry):
         # loop over each column in each row for cleaning
         for j, col in row.iteritems():
             # first convert all "n/a"s, "No Data"s, and "--"s to np.nans, and continue next loop iteration
-            if "n/a" in col or "No Data" in col or "--" in col or "Off" in col or col == "":
+            if (
+                "n/a" in col
+                or "No Data" in col
+                or "--" in col
+                or "Off" in col
+                or col == ""
+            ):
                 dirtyLaundry.loc[i, j] = np.nan
                 continue
             # remove the "sqft" string from each item that contains "sqft", then continue to next loop iteration

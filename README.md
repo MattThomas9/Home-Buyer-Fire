@@ -1,7 +1,7 @@
 # homeBuyerFire
-[![Build Status](https://travis-ci.com/MattThomas9/Home-Buyer-Fire.svg?branch=master)](https://travis-ci.com/MattThomas9/Home-Buyer-Fire)
+[![Build Status](https://travis-ci.com/MattThomas9/Home-Buyer-Fire.svg?branch=DataCleanDevLop)](https://travis-ci.com/MattThomas9/Home-Buyer-Fire)
 [![Actions Status](https://github.com/MattThomas9/Home-Buyer-Fire/workflows/Lint/badge.svg)](https://github.com/MattThomas9/Home-Buyer-Fire/actions)
-[![codecov](https://codecov.io/gh/MattThomas9/Home-Buyer-Fire/branch/master/graph/badge.svg?token=5AJUA8I31G)](https://codecov.io/gh/MattThomas9/Home-Buyer-Fire/)
+[![codecov](https://codecov.io/gh/MattThomas9/Home-Buyer-Fire/branch/DataCleanDevLop/graph/badge.svg?token=5AJUA8I31G)](https://codecov.io/gh/MattThomas9/Home-Buyer-Fire/)
 [![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2FMattThomas9%2FHome-Buyer-Fire.svg?type=shield)](https://app.fossa.com/projects/git%2Bgithub.com%2FMattThomas9%2FHome-Buyer-Fire?ref=badge_shield)
 [![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
 
@@ -15,11 +15,12 @@ A program to predict a home's sell price using data scraped from the internet.
 
 ### Dependencies
 
-- `beautifulsoup4`
-- `geopy`
-- `requests`
-- `pandas`
-- `configparser`
+- `beautifulsoup4` = "^4.9.3"
+- `geopy` = "^2.0.0"
+- `requests` = "^2.24.0"
+- `pandas` = "^1.1.3"
+- `configparser` = "^5.0.0"
+- `progress` = "^1.5"
 
 ### List of Files
 
@@ -34,7 +35,7 @@ List all input and output files, even those considered self-explanatory. Link to
 Starting from the project's parent directory:
 
 ```
-python3 hbf/hbfMain.py [*path to input file*]/[*inputFilename*]
+python hbf/hbfMain.py /path/to/input/[*filename*]
 ```
 
 ```
