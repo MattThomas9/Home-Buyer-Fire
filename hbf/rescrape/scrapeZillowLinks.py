@@ -1,4 +1,5 @@
 from rescrape.getHTML import getHTML
+from progress.bar import IncrementalBar
 
 # Currently, this scraper function cannot scrape information from Zillow web pages that use
 # Java Script to subsequently load webpage details. Java Script transactions on a webpage delay the download
@@ -8,6 +9,9 @@ from rescrape.getHTML import getHTML
 
 
 def scrapeZillowLinks(SoldHomeZillowLinks, headerInput):
+    # Initialize progress bar
+    bar = IncrementalBar(" Scraping Zillow", max=len(SoldHomeZillowLinks))
+
     # Initialize list to hold sold home data during loop over each recently sold home Zillow link
     SoldHomeDataList = []
 
@@ -126,5 +130,9 @@ def scrapeZillowLinks(SoldHomeZillowLinks, headerInput):
                 SoldHomeLotSize,
             ]
         )
+
+        bar.next()  # to advance progress bar
+    bar.finish()  # to finish the progress bar
+    print()  # to add space following progress bar
 
     return SoldHomeDataList

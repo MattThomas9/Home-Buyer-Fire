@@ -8,3 +8,4 @@ coverage
 pre-commit
 black
 numpy
+progress
