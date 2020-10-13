@@ -1,3 +1,4 @@
+from helpers.logger import logToFile
 from rescrape.buildZillowURL import buildZillowURL
 from rescrape.getHTML import getHTML
 from rescrape.getNumZillowPages import getNumZillowPages
@@ -60,7 +61,8 @@ def getAllSoldHomeZillowURLs(
 
     # All unique Sold Home Zillow URLs from the user's search box are printed to screen, in case the user needs to
     # quickly visit any one of them.
-    print(*SoldHomeZillowLinks, sep="\n")
+    mess = "\n".join(SoldHomeZillowLinks)
+    logToFile(__name__, mess, 'INFO')
 
     # An equality check is completed to make sure the number of SoldHomeZillowLinks is the same as
     # the ZillowResultCount. The number of SoldHomeZillowLinks is a count of each unique sold home link we scraped.
@@ -68,16 +70,10 @@ def getAllSoldHomeZillowURLs(
     # not equal, it may mean more or less sold home URLs have been scraped than what the original Zillow search result
     # count was from the original Zillow web page, thus indicating a potential error.
     if len(SoldHomeZillowLinks) == ZillowResultCount:
-        print(
-            "The number of Sold Home Zillow Links scraped from all pages equals \n"
-            "the Zillow Result Count that was scraped from the initial page."
-        )
+        mess = "The number of Sold Home Zillow Links scraped from all pages equals\nthe Zillow Result Count that was scraped from the initial page."
+        logToFile(__name__, mess, 'INFO')
     else:
-        print(
-            "WARNING!!! The number of Sold Home Zillow Links scraped from all pages DOES NOT EQUAL \n"
-            "the Zillow Result Count that was scraped from the initial page. There may be an issue with Zillow \n"
-            "recommending/providing additional links on subsequent pages that weren't originally included in \n"
-            "the Zillow Result Count."
-        )
+        mess = "WARNING!!! The number of Sold Home Zillow Links scraped from all pages DOES NOT EQUAL\nthe Zillow Result Count that was scraped from the initial page. There may be an issue with Zillow\nrecommending/providing additional links on subsequent pages that weren't originally included in\nthe Zillow Result Count."
+        logToFile(__name__, mess, 'WARNING')
 
     return SoldHomeZillowLinks

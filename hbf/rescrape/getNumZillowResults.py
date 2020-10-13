@@ -1,13 +1,15 @@
+from helpers.logger import logToFile
+
+
 def getNumZillowResults(ZillowHTML):
     ZillowResultCount = int(
         (ZillowHTML.find("span", class_="result-count"))
         .text.split()[0]
         .replace(",", "")
     )
-    print(
-        ZillowResultCount,
-        "recently sold homes on Zillow were found within the search box.",
-    )
+    mess = str(ZillowResultCount) + " recently sold homes on Zillow were found within the search box."
+    logToFile(__name__, mess, 'INFO')
+
     # Zillow limits the number of pages of a search to 20, and the number of results/page to 40; therefore, the maximum
     # number of results one can obtain is 800.
     if ZillowResultCount > 800:

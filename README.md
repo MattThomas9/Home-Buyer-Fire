@@ -1,7 +1,7 @@
 # homeBuyerFire
-[![Build Status](https://travis-ci.com/MattThomas9/Home-Buyer-Fire.svg?branch=DataCleanDevLop)](https://travis-ci.com/MattThomas9/Home-Buyer-Fire)
+[![Build Status](https://travis-ci.com/MattThomas9/Home-Buyer-Fire.svg?branch=master)](https://travis-ci.com/MattThomas9/Home-Buyer-Fire)
 [![Actions Status](https://github.com/MattThomas9/Home-Buyer-Fire/workflows/Lint/badge.svg)](https://github.com/MattThomas9/Home-Buyer-Fire/actions)
-[![codecov](https://codecov.io/gh/MattThomas9/Home-Buyer-Fire/branch/DataCleanDevLop/graph/badge.svg?token=5AJUA8I31G)](https://codecov.io/gh/MattThomas9/Home-Buyer-Fire/)
+[![codecov](https://codecov.io/gh/MattThomas9/Home-Buyer-Fire/branch/master/graph/badge.svg?token=5AJUA8I31G)](https://codecov.io/gh/MattThomas9/Home-Buyer-Fire/)
 [![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2FMattThomas9%2FHome-Buyer-Fire.svg?type=shield)](https://app.fossa.com/projects/git%2Bgithub.com%2FMattThomas9%2FHome-Buyer-Fire?ref=badge_shield)
 [![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
 
@@ -9,7 +9,7 @@
 
 A program to predict a home's sell price using data scraped from the internet.
 
-`homeBuyerFire` was written in Python 3.7.
+`homeBuyerFire` is actively developed using a Python 3.7 interpreter.
 
 ## Getting Started
 
@@ -35,33 +35,22 @@ List all input and output files, even those considered self-explanatory. Link to
 Starting from the project's parent directory:
 
 ```
-python hbf/hbfMain.py /path/to/input/[*filename*]
+python hbf/hbfMain.py /path/to/input/[filename]
 ```
 
 ```
-The address has been GeoCoded!
-Searching within a square area of half-width 0.1 miles.
-Only 1 page of Zillow search results exist in this search box.
-8 recently sold homes on Zillow were found within the search box.
-https://www.zillow.com/homedetails/11705-College-View-Dr-Silver-Spring-MD-20902/37316339_zpid/
-https://www.zillow.com/homedetails/11714-College-View-Dr-Silver-Spring-MD-20902/37301330_zpid/
-https://www.zillow.com/homedetails/3406-Glorus-Pl-Silver-Spring-MD-20902/37301367_zpid/
-https://www.zillow.com/homedetails/11703-College-View-Dr-Silver-Spring-MD-20902/37316329_zpid/
-https://www.zillow.com/homedetails/3400-Glorus-Pl-Silver-Spring-MD-20902/37301374_zpid/
-https://www.zillow.com/homedetails/11714-Veirs-Mill-Rd-Silver-Spring-MD-20902/37301521_zpid/
-https://www.zillow.com/homedetails/3402-Pendleton-Dr-Silver-Spring-MD-20902/37316316_zpid/
-https://www.zillow.com/homedetails/3411-Pendleton-Dr-Silver-Spring-MD-20902/37316382_zpid/
-The number of Sold Home Zillow Links scraped from all pages equals
-the Zillow Result Count that was scraped from the initial page.
-                                        Address Sell Price Beds Baths Home Size      Home Type Year Built               Heating  Cooling    Parking    Lot Size
-0  11705 College View Dr Silver Spring MD 20902     293000    2     2     1,526  Single Family       1951            Forced air  Central    No Data  6,791 sqft
-1  11714 College View Dr Silver Spring MD 20902     465000    4     3     2,843  Single Family       1962  Baseboard, Heat pump  Central    No Data  8,115 sqft
-2         3406 Glorus Pl Silver Spring MD 20902     785000    5     5     5,872  Single Family       2006            Forced air  Central    No Data  0.25 Acres
-3  11703 College View Dr Silver Spring MD 20902     475000    4     2     1,982  Single Family       1951            Forced air  Central  On street  6,930 sqft
-4         3400 Glorus Pl Silver Spring MD 20902     395000    4     3     1,914  Single Family       1953      None, Forced air  Central    No Data  7,178 sqft
-5    11714 Veirs Mill Rd Silver Spring MD 20902     383000    6     3     1,836  Single Family       1953            Forced air  Central    No Data  6,812 sqft
-6      3402 Pendleton Dr Silver Spring MD 20902     340000    2     1       882  Single Family       1951            Forced air  Central    No Data  7,609 sqft
-7      3411 Pendleton Dr Silver Spring MD 20902     425000   --     2     1,082  Single Family       1951                 Other  No Data    No Data  9,700 sqft
+Scraping Zillow |████████████████████████████████| 7/7
+
+                                       Address  Sell Price  Beds  Baths  Home Size      Home Type  Year Built                         Heating  Cooling Parking  Lot Size
+0  11705 College View Dr Silver Spring MD 20902    293000.0   2.0    2.0     1526.0  Single Family      1951.0                      Forced air  Central     NaN    6791.0
+1  11714 College View Dr Silver Spring MD 20902    465000.0   4.0    3.0     2843.0  Single Family      1962.0  Baseboard, Heat pump, Electric  Central     NaN    8115.0
+2         3406 Glorus Pl Silver Spring MD 20902    785000.0   5.0    5.0     5872.0  Single Family      2006.0                      Forced air  Central     NaN   10890.0
+3  11703 College View Dr Silver Spring MD 20902    475000.0   4.0    2.0     1982.0  Single Family      1951.0                 Forced air, Gas  Central     NaN    6930.0
+4         3400 Glorus Pl Silver Spring MD 20902    395000.0   4.0    3.0     1914.0  Single Family      1953.0                None, Forced air  Central     NaN    7178.0
+5    11714 Veirs Mill Rd Silver Spring MD 20902    383000.0   6.0    3.0     1836.0  Single Family      1953.0                      Forced air  Central     NaN    6812.0
+6      3402 Pendleton Dr Silver Spring MD 20902    340000.0   2.0    1.0      882.0  Single Family      1951.0                      Forced air  Central     NaN    7609.0
+
+--- 15.11016297340393 seconds ---
 ```
 
 ## Contact Info

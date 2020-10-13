@@ -1,11 +1,8 @@
+from helpers.logger import logToFile
 import numpy as np
-from progress.bar import IncrementalBar
 
 
 def laundry(dirtyLaundry):
-    # Initialize progress bar
-    bar = IncrementalBar(" Cleaning Data", max=len(dirtyLaundry))
-
     # loop over each row in the data frame for cleaning
     for i, row in dirtyLaundry.iterrows():
         # loop over each column in each row for cleaning
@@ -39,9 +36,6 @@ def laundry(dirtyLaundry):
                 # store the remaining item from the new size1 list (i.e. the value itself) into the original df location
                 dirtyLaundry.loc[i, j] = float(col[0]) * 43560.0
                 continue
-        bar.next()  # to advance progress bar
-    bar.finish()  # to finish the progress bar
-    print()  # to add space following progress bar
 
     # convert Sell Price, Beds, Baths, Home Size, Year Built, and Lot Size columns into float type
     dirtyLaundry["Sell Price"] = dirtyLaundry["Sell Price"].astype(float)
@@ -51,6 +45,12 @@ def laundry(dirtyLaundry):
     dirtyLaundry["Year Built"] = dirtyLaundry["Year Built"].astype(float)
     dirtyLaundry["Lot Size"] = dirtyLaundry["Lot Size"].astype(float)
 
+    # Log clean SoldHomeData
+    logToFile(__name__, dirtyLaundry, 'INFO')
+    # Log clean SoldHomeData datatypes
+    logToFile(__name__, dirtyLaundry.dtypes, 'INFO')
+
     print(dirtyLaundry)
-    print(dirtyLaundry.dtypes)
+    print()
+
     return
