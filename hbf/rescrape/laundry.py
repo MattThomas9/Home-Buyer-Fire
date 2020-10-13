@@ -46,9 +46,9 @@ def laundry(dirtyLaundry):
     dirtyLaundry["Lot Size"] = dirtyLaundry["Lot Size"].astype(float)
 
     # Log clean SoldHomeData
-    logToFile(__name__, dirtyLaundry, 'INFO')
+    logToFile(__name__, dirtyLaundry, "INFO")
     # Log clean SoldHomeData datatypes
-    logToFile(__name__, dirtyLaundry.dtypes, 'INFO')
+    logToFile(__name__, dirtyLaundry.dtypes, "INFO")
 
     print(dirtyLaundry)
     print()

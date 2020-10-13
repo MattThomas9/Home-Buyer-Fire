@@ -7,8 +7,11 @@ def getNumZillowResults(ZillowHTML):
         .text.split()[0]
         .replace(",", "")
     )
-    mess = str(ZillowResultCount) + " recently sold homes on Zillow were found within the search box."
-    logToFile(__name__, mess, 'INFO')
+    mess = (
+        str(ZillowResultCount)
+        + " recently sold homes on Zillow were found within the search box."
+    )
+    logToFile(__name__, mess, "INFO")
 
     # Zillow limits the number of pages of a search to 20, and the number of results/page to 40; therefore, the maximum
     # number of results one can obtain is 800.

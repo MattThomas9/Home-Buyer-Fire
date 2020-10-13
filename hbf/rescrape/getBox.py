@@ -28,7 +28,7 @@ def getBox(Address, SearchBoxHalfWidth):
             )
             print("Trying to GeoCode the new address: ", Address)
         else:
-            logToFile(__name__, "The address has been GeoCoded!", 'INFO')
+            logToFile(__name__, "The address has been GeoCoded!", "INFO")
             break
     # The search box coordinates are obtained via a geodesic measurement from the origin (e.g. user supplied address)
     # to the direct North, direct East, direct South, and direct West using the user supplied SearchBoxHalfWidth.
@@ -50,7 +50,11 @@ def getBox(Address, SearchBoxHalfWidth):
     )
     WestBoundary = WestDestination.longitude
 
-    mess = "Searching within a square area of half-width " + str(SearchBoxHalfWidth)  + " miles."
-    logToFile(__name__, mess, 'INFO')
+    mess = (
+        "Searching within a square area of half-width "
+        + str(SearchBoxHalfWidth)
+        + " miles."
+    )
+    logToFile(__name__, mess, "INFO")
 
     return NorthBoundary, SouthBoundary, EastBoundary, WestBoundary

@@ -62,7 +62,7 @@ def getAllSoldHomeZillowURLs(
     # All unique Sold Home Zillow URLs from the user's search box are printed to screen, in case the user needs to
     # quickly visit any one of them.
     mess = "\n".join(SoldHomeZillowLinks)
-    logToFile(__name__, mess, 'INFO')
+    logToFile(__name__, mess, "INFO")
 
     # An equality check is completed to make sure the number of SoldHomeZillowLinks is the same as
     # the ZillowResultCount. The number of SoldHomeZillowLinks is a count of each unique sold home link we scraped.
@@ -71,9 +71,9 @@ def getAllSoldHomeZillowURLs(
     # count was from the original Zillow web page, thus indicating a potential error.
     if len(SoldHomeZillowLinks) == ZillowResultCount:
         mess = "The number of Sold Home Zillow Links scraped from all pages equals\nthe Zillow Result Count that was scraped from the initial page."
-        logToFile(__name__, mess, 'INFO')
+        logToFile(__name__, mess, "INFO")
     else:
         mess = "WARNING!!! The number of Sold Home Zillow Links scraped from all pages DOES NOT EQUAL\nthe Zillow Result Count that was scraped from the initial page. There may be an issue with Zillow\nrecommending/providing additional links on subsequent pages that weren't originally included in\nthe Zillow Result Count."
-        logToFile(__name__, mess, 'WARNING')
+        logToFile(__name__, mess, "WARNING")
 
     return SoldHomeZillowLinks

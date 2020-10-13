@@ -11,7 +11,7 @@ from rescrape.laundry import laundry
 
 
 startTime = time.time()
-logToFile(__name__, 'Started.', 'INFO')
+logToFile(__name__, "Started.", "INFO")
 # Step 0: Get input parameters from file.
 (
     StreetNumber,
@@ -45,9 +45,9 @@ SoldHomeData = soldHomeDF(SoldHomeDataList)
 
 # Step 6: Clean the SoldHomeData data frame
 SoldHomeData_cleaned = laundry(SoldHomeData)
-logToFile(__name__, 'Finished.', 'INFO')
+logToFile(__name__, "Finished.", "INFO")
 
 # Log timing info.
 mess = str("--- %s seconds ---" % (time.time() - startTime))
-logToFile(__name__, mess, 'INFO')
+logToFile(__name__, mess, "INFO")
 print("--- %s seconds ---" % (time.time() - startTime))

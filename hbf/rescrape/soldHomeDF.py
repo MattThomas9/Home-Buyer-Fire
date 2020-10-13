@@ -26,6 +26,6 @@ def soldHomeDF(SoldHomeDataList):
     )
 
     # Log dirty SoldHomeData
-    logToFile(__name__, SoldHomeData, 'INFO')
+    logToFile(__name__, SoldHomeData, "INFO")
 
     return SoldHomeData
