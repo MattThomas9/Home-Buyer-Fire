@@ -5,7 +5,7 @@
 [![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2FMattThomas9%2FHome-Buyer-Fire.svg?type=shield)](https://app.fossa.com/projects/git%2Bgithub.com%2FMattThomas9%2FHome-Buyer-Fire?ref=badge_shield)
 [![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
 
-<a href="https://bookdown.org/yihui/blogdown"><img src="https://docs.google.com/drawings/d/e/2PACX-1vR8jfxdu85njA8C-Fvv0QCGoNrIn8swDLRArTq0IZqmbz9K0_Qe-eHAJJn0OCaIJfUiU8U6EQ4rl7y2/pub?w=229&h=278" alt="hbf logo" align="right" /></a>
+<a href="https://pypi.org/project/hbf/"><img src="https://docs.google.com/drawings/d/e/2PACX-1vR8jfxdu85njA8C-Fvv0QCGoNrIn8swDLRArTq0IZqmbz9K0_Qe-eHAJJn0OCaIJfUiU8U6EQ4rl7y2/pub?w=229&h=278" alt="hbf logo" align="right" /></a>
 
 ## Project Overview
 
