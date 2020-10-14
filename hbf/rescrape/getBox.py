@@ -1,4 +1,4 @@
-from helpers.logger import logToFile
+from hbf.helpers.logger import logToFile
 import geopy
 from geopy.geocoders import Nominatim
 from geopy.distance import geodesic

@@ -1,4 +1,4 @@
-from helpers.logger import logToFile
+from hbf.helpers.logger import logToFile
 
 
 def getNumZillowPages(ZillowHTML):
