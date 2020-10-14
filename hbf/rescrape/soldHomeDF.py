@@ -1,3 +1,4 @@
+from helpers.logger import logToFile
 import pandas as pd
 
 
@@ -23,6 +24,8 @@ def soldHomeDF(SoldHomeDataList):
     pd.set_option(
         "display.max_rows", None, "display.max_columns", None, "display.width", None
     )
-    print(SoldHomeData)
+
+    # Log dirty SoldHomeData
+    logToFile(__name__, SoldHomeData, "INFO")
 
     return SoldHomeData

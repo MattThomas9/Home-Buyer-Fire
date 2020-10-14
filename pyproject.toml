@@ -13,10 +13,12 @@ geopy = "^2.0.0"
 requests = "^2.24.0"
 pandas = "^1.1.3"
 configparser = "^5.0.0"
+progress = "^1.5"
 
 [tool.poetry.dev-dependencies]
 nose = "^1.3.7"
 coverage = "^5.3"
+pre-commit = "^2.7.1"
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]

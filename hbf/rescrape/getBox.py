@@ -1,3 +1,4 @@
+from helpers.logger import logToFile
 import geopy
 from geopy.geocoders import Nominatim
 from geopy.distance import geodesic
@@ -27,7 +28,7 @@ def getBox(Address, SearchBoxHalfWidth):
             )
             print("Trying to GeoCode the new address: ", Address)
         else:
-            print("The address has been GeoCoded!")
+            logToFile(__name__, "The address has been GeoCoded!", "INFO")
             break
     # The search box coordinates are obtained via a geodesic measurement from the origin (e.g. user supplied address)
     # to the direct North, direct East, direct South, and direct West using the user supplied SearchBoxHalfWidth.
@@ -48,6 +49,12 @@ def getBox(Address, SearchBoxHalfWidth):
         origin, 270.0
     )
     WestBoundary = WestDestination.longitude
-    print("Searching within a square area of half-width", SearchBoxHalfWidth, "miles.")
+
+    mess = (
+        "Searching within a square area of half-width "
+        + str(SearchBoxHalfWidth)
+        + " miles."
+    )
+    logToFile(__name__, mess, "INFO")
 
     return NorthBoundary, SouthBoundary, EastBoundary, WestBoundary
