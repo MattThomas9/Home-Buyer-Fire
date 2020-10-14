@@ -1,9 +1,9 @@
-from helpers.logger import logToFile
-from rescrape.buildZillowURL import buildZillowURL
-from rescrape.getHTML import getHTML
-from rescrape.getNumZillowPages import getNumZillowPages
-from rescrape.getNumZillowResults import getNumZillowResults
-from rescrape.getZillowURLsOnPage import getZillowURLsOnPage
+from hbf.helpers.logger import logToFile
+from hbf.rescrape.buildZillowURL import buildZillowURL
+from hbf.rescrape.getHTML import getHTML
+from hbf.rescrape.getNumZillowPages import getNumZillowPages
+from hbf.rescrape.getNumZillowResults import getNumZillowResults
+from hbf.rescrape.getZillowURLsOnPage import getZillowURLsOnPage
 import webbrowser
 
 

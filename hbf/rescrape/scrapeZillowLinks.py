@@ -1,4 +1,4 @@
-from rescrape.getHTML import getHTML
+from hbf.rescrape.getHTML import getHTML
 from progress.bar import IncrementalBar
 
 # Currently, this scraper function cannot scrape information from Zillow web pages that use

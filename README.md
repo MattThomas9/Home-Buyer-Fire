@@ -13,31 +13,18 @@ A program to predict a home's sell price using data scraped from the internet.
 
 `homeBuyerFire` is actively developed using a Python 3.7 interpreter.
 
-## Getting Started
+## Installation
 
-### Dependencies
+```
+pip install hbf
+```
 
-- `beautifulsoup4` = "^4.9.3"
-- `geopy` = "^2.0.0"
-- `requests` = "^2.24.0"
-- `pandas` = "^1.1.3"
-- `configparser` = "^5.0.0"
-- `progress` = "^1.5"
-
-### List of Files
-
-List all input and output files, even those considered self-explanatory. Link to specifications for standard formats and list the required fields and acceptable values in other files. If there is no rigorous definition for a format, explain its parts as clearly as possible in plain English.
-
-#### Input
-
-#### Output
-
-### Example
+## Example
 
 Starting from the project's parent directory:
 
 ```
-python hbf/hbfMain.py /path/to/input/[filename]
+python example.py
 ```
 
 ```

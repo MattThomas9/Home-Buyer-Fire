@@ -1,4 +1,4 @@
-from helpers.logger import logToFile
+from hbf.helpers.logger import logToFile
 import numpy as np
 
 
@@ -53,4 +53,4 @@ def laundry(dirtyLaundry):
     print(dirtyLaundry)
     print()
 
-    return
+    return dirtyLaundry
