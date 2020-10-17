@@ -3,7 +3,7 @@ name = "hbf"
 version = "0.1.0"
 description = "A program to predict a home's sell price using data scraped from the internet"
 authors = ["Your Name <you@example.com>"]
-license = "GPL-3.0 License"
+license = "GNU General Public License v3.0"
 readme = "README.md"
 
 [tool.poetry.dependencies]
