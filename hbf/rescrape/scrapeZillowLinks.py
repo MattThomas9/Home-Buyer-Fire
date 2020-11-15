@@ -71,14 +71,13 @@ def scrapeZillowLinks(SoldHomeZillowLinks, headerInput):
         # Next, we search for the home type, year built, heating, cooling, parking, and lot size. In Zillow, each one of
         # these variables is under a "li" class="ds-home-fact-list-item" tag. The find_all method will find each one of
         # these variables and store them into a result set (i.e. ds_home_fact_list_items). Each item of the result set
-        # has a child "span" class="ds-home-fact-label" tag AND a child "span" class="ds-home-fact-value" tag. For
-        # example, for "home type" information (generally the first item in the result set), there will be a
-        # child "span" class="ds-home-fact-label" tag that will contain the text "Type" and there will be a
-        # child "span" class="ds-home-fact-value" tag that will contain the text "Single Family". We loop over the
-        # result set checking each item's "label" tag for key words that we know will be contained in the item's
-        # "span" class="ds-home-fact-label" tag. If the key word is found in the item's child
-        # "span" class="ds-home-fact-label" tag, then we store the text found in the item's adjacent child
-        # "span" class="ds-home-fact-value" tag into the appropriate variable while removing the unwanted characters.
+        # has a child "span" class="Text-c11n-8-11-1__aiai24-0 sc-pLwIe gSdGFm" tag (i.e. the "label" tag)
+        # AND a child "span" class="Text-c11n-8-11-1__aiai24-0 hqfqED" tag (i.e. the "value" tag).
+        # For example, for "home type" information (generally the first item in the result set), there will be a
+        # "label" tag that will contain the text "Type" and there will be a "value" tag that will contain the text
+        # "Single Family". We loop over the result set checking each item's "label" tag for key words that we know will
+        # be contained in that tag. If the key word is found in the item's "label" tag, then we store the text found in
+        # the item's adjacent "value" tag into the appropriate variable while removing the unwanted characters.
         # If the key word is not found, then the appropriate variable will retain its initialization value of "n/a".
         ds_home_fact_list_items = ZillowHTML.find_all(
             "li", class_="ds-home-fact-list-item"
@@ -90,27 +89,27 @@ def scrapeZillowLinks(SoldHomeZillowLinks, headerInput):
         SoldHomeParking = "n/a"
         SoldHomeLotSize = "n/a"
         for item in ds_home_fact_list_items:
-            if "type" in item.find("span", class_="ds-home-fact-label").text.lower():
-                SoldHomeType = item.find("span", class_="ds-home-fact-value").text
+            if "type" in item.find("span", class_="Text-c11n-8-11-1__aiai24-0 sc-pLwIe gSdGFm").text.lower():
+                SoldHomeType = item.find("span", class_="Text-c11n-8-11-1__aiai24-0 hqfqED").text
                 continue
             if (
                 "year built"
-                in item.find("span", class_="ds-home-fact-label").text.lower()
+                in item.find("span", class_="Text-c11n-8-11-1__aiai24-0 sc-pLwIe gSdGFm").text.lower()
             ):
-                SoldHomeYearBuilt = item.find("span", class_="ds-home-fact-value").text
+                SoldHomeYearBuilt = item.find("span", class_="Text-c11n-8-11-1__aiai24-0 hqfqED").text
                 continue
-            if "heating" in item.find("span", class_="ds-home-fact-label").text.lower():
-                SoldHomeHeating = item.find("span", class_="ds-home-fact-value").text
+            if "heating" in item.find("span", class_="Text-c11n-8-11-1__aiai24-0 sc-pLwIe gSdGFm").text.lower():
+                SoldHomeHeating = item.find("span", class_="Text-c11n-8-11-1__aiai24-0 hqfqED").text
                 continue
-            if "cooling" in item.find("span", class_="ds-home-fact-label").text.lower():
-                SoldHomeCooling = item.find("span", class_="ds-home-fact-value").text
+            if "cooling" in item.find("span", class_="Text-c11n-8-11-1__aiai24-0 sc-pLwIe gSdGFm").text.lower():
+                SoldHomeCooling = item.find("span", class_="Text-c11n-8-11-1__aiai24-0 hqfqED").text
                 continue
-            if "parking" in item.find("span", class_="ds-home-fact-label").text.lower():
-                SoldHomeParking = item.find("span", class_="ds-home-fact-value").text
+            if "parking" in item.find("span", class_="Text-c11n-8-11-1__aiai24-0 sc-pLwIe gSdGFm").text.lower():
+                SoldHomeParking = item.find("span", class_="Text-c11n-8-11-1__aiai24-0 hqfqED").text
                 continue
-            if "lot" in item.find("span", class_="ds-home-fact-label").text.lower():
+            if "lot" in item.find("span", class_="Text-c11n-8-11-1__aiai24-0 sc-pLwIe gSdGFm").text.lower():
                 SoldHomeLotSize = item.find(
-                    "span", class_="ds-home-fact-value"
+                    "span", class_="Text-c11n-8-11-1__aiai24-0 hqfqED"
                 ).text.replace(",", "")
                 continue
 
