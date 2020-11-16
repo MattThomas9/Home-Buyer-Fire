@@ -89,25 +89,62 @@ def scrapeZillowLinks(SoldHomeZillowLinks, headerInput):
         SoldHomeParking = "n/a"
         SoldHomeLotSize = "n/a"
         for item in ds_home_fact_list_items:
-            if "type" in item.find("span", class_="Text-c11n-8-11-1__aiai24-0 sc-pLwIe gSdGFm").text.lower():
-                SoldHomeType = item.find("span", class_="Text-c11n-8-11-1__aiai24-0 hqfqED").text
+            if (
+                "type"
+                in item.find(
+                    "span", class_="Text-c11n-8-11-1__aiai24-0 sc-pLwIe gSdGFm"
+                ).text.lower()
+            ):
+                SoldHomeType = item.find(
+                    "span", class_="Text-c11n-8-11-1__aiai24-0 hqfqED"
+                ).text
                 continue
             if (
                 "year built"
-                in item.find("span", class_="Text-c11n-8-11-1__aiai24-0 sc-pLwIe gSdGFm").text.lower()
+                in item.find(
+                    "span", class_="Text-c11n-8-11-1__aiai24-0 sc-pLwIe gSdGFm"
+                ).text.lower()
             ):
-                SoldHomeYearBuilt = item.find("span", class_="Text-c11n-8-11-1__aiai24-0 hqfqED").text
+                SoldHomeYearBuilt = item.find(
+                    "span", class_="Text-c11n-8-11-1__aiai24-0 hqfqED"
+                ).text
                 continue
-            if "heating" in item.find("span", class_="Text-c11n-8-11-1__aiai24-0 sc-pLwIe gSdGFm").text.lower():
-                SoldHomeHeating = item.find("span", class_="Text-c11n-8-11-1__aiai24-0 hqfqED").text
+            if (
+                "heating"
+                in item.find(
+                    "span", class_="Text-c11n-8-11-1__aiai24-0 sc-pLwIe gSdGFm"
+                ).text.lower()
+            ):
+                SoldHomeHeating = item.find(
+                    "span", class_="Text-c11n-8-11-1__aiai24-0 hqfqED"
+                ).text
                 continue
-            if "cooling" in item.find("span", class_="Text-c11n-8-11-1__aiai24-0 sc-pLwIe gSdGFm").text.lower():
-                SoldHomeCooling = item.find("span", class_="Text-c11n-8-11-1__aiai24-0 hqfqED").text
+            if (
+                "cooling"
+                in item.find(
+                    "span", class_="Text-c11n-8-11-1__aiai24-0 sc-pLwIe gSdGFm"
+                ).text.lower()
+            ):
+                SoldHomeCooling = item.find(
+                    "span", class_="Text-c11n-8-11-1__aiai24-0 hqfqED"
+                ).text
                 continue
-            if "parking" in item.find("span", class_="Text-c11n-8-11-1__aiai24-0 sc-pLwIe gSdGFm").text.lower():
-                SoldHomeParking = item.find("span", class_="Text-c11n-8-11-1__aiai24-0 hqfqED").text
+            if (
+                "parking"
+                in item.find(
+                    "span", class_="Text-c11n-8-11-1__aiai24-0 sc-pLwIe gSdGFm"
+                ).text.lower()
+            ):
+                SoldHomeParking = item.find(
+                    "span", class_="Text-c11n-8-11-1__aiai24-0 hqfqED"
+                ).text
                 continue
-            if "lot" in item.find("span", class_="Text-c11n-8-11-1__aiai24-0 sc-pLwIe gSdGFm").text.lower():
+            if (
+                "lot"
+                in item.find(
+                    "span", class_="Text-c11n-8-11-1__aiai24-0 sc-pLwIe gSdGFm"
+                ).text.lower()
+            ):
                 SoldHomeLotSize = item.find(
                     "span", class_="Text-c11n-8-11-1__aiai24-0 hqfqED"
                 ).text.replace(",", "")
