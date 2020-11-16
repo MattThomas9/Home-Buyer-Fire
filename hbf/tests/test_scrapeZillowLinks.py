@@ -26,7 +26,7 @@ def test_scrapeZillowLinks():
             "1951",
             "Forced air",
             "Central",
-            "No Data",
+            "Garage",
             "6791 sqft",
         ]
     ]
