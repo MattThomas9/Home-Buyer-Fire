@@ -92,7 +92,7 @@ def scrapeZillowLinks(SoldHomeZillowLinks, headerInput):
             if (
                 "type"
                 in item.find(
-                    "span", class_="Text-c11n-8-11-1__aiai24-0 sc-pLwIe gSdGFm"
+                    "span", class_="Text-c11n-8-11-1__aiai24-0 sc-pTWqp jMCspH"
                 ).text.lower()
             ):
                 SoldHomeType = item.find(
@@ -102,7 +102,7 @@ def scrapeZillowLinks(SoldHomeZillowLinks, headerInput):
             if (
                 "year built"
                 in item.find(
-                    "span", class_="Text-c11n-8-11-1__aiai24-0 sc-pLwIe gSdGFm"
+                    "span", class_="Text-c11n-8-11-1__aiai24-0 sc-pTWqp jMCspH"
                 ).text.lower()
             ):
                 SoldHomeYearBuilt = item.find(
@@ -112,7 +112,7 @@ def scrapeZillowLinks(SoldHomeZillowLinks, headerInput):
             if (
                 "heating"
                 in item.find(
-                    "span", class_="Text-c11n-8-11-1__aiai24-0 sc-pLwIe gSdGFm"
+                    "span", class_="Text-c11n-8-11-1__aiai24-0 sc-pTWqp jMCspH"
                 ).text.lower()
             ):
                 SoldHomeHeating = item.find(
@@ -122,7 +122,7 @@ def scrapeZillowLinks(SoldHomeZillowLinks, headerInput):
             if (
                 "cooling"
                 in item.find(
-                    "span", class_="Text-c11n-8-11-1__aiai24-0 sc-pLwIe gSdGFm"
+                    "span", class_="Text-c11n-8-11-1__aiai24-0 sc-pTWqp jMCspH"
                 ).text.lower()
             ):
                 SoldHomeCooling = item.find(
@@ -132,7 +132,7 @@ def scrapeZillowLinks(SoldHomeZillowLinks, headerInput):
             if (
                 "parking"
                 in item.find(
-                    "span", class_="Text-c11n-8-11-1__aiai24-0 sc-pLwIe gSdGFm"
+                    "span", class_="Text-c11n-8-11-1__aiai24-0 sc-pTWqp jMCspH"
                 ).text.lower()
             ):
                 SoldHomeParking = item.find(
@@ -142,7 +142,7 @@ def scrapeZillowLinks(SoldHomeZillowLinks, headerInput):
             if (
                 "lot"
                 in item.find(
-                    "span", class_="Text-c11n-8-11-1__aiai24-0 sc-pLwIe gSdGFm"
+                    "span", class_="Text-c11n-8-11-1__aiai24-0 sc-pTWqp jMCspH"
                 ).text.lower()
             ):
                 SoldHomeLotSize = item.find(
