@@ -1,4 +1,4 @@
-from hbf.getCleanedDF import getDF
+from hbf.hbfmain import hbfmain
 
 
-getDF("res.inp")
+hbfmain("hbf.inp")

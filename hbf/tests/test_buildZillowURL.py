@@ -2,7 +2,7 @@ from rescrape.buildZillowURL import buildZillowURL
 from nose.tools import assert_equal
 
 
-# Test supporting `getAllSoldHomeZillowURLs.py` functionality.
+# Test supporting `getzillowurls.py` functionality.
 
 
 def test_buildZillowURL():

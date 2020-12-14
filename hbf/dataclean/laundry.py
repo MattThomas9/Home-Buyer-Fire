@@ -1,10 +1,10 @@
-from hbf.helpers.logger import logToFile
+from hbf.helpers.logtofile import logtofile
 import numpy as np
 
 
-def laundry(dirtyLaundry):
+def laundry(dirty_laundry):
     # loop over each row in the data frame for cleaning
-    for i, row in dirtyLaundry.iterrows():
+    for i, row in dirty_laundry.iterrows():
         # loop over each column in each row for cleaning
         for j, col in row.iteritems():
             # first convert all "n/a"s, "No Data"s, and "--"s to np.nans, and continue next loop iteration
@@ -15,7 +15,7 @@ def laundry(dirtyLaundry):
                 or "Off" in col
                 or col == ""
             ):
-                dirtyLaundry.loc[i, j] = np.nan
+                dirty_laundry.loc[i, j] = np.nan
                 continue
             # remove the "sqft" string from each item that contains "sqft", then continue to next loop iteration
             if "sqft" in col.lower():
@@ -24,7 +24,7 @@ def laundry(dirtyLaundry):
                 # then remove the item in the new list that matches "sqft"
                 col.remove("sqft")
                 # store the remaining item from the new size1 list (i.e. the value itself) into the original df location
-                dirtyLaundry.loc[i, j] = float(col[0])
+                dirty_laundry.loc[i, j] = float(col[0])
                 continue
             # remove the "acres" string from each item that contains "acres" and convert to sqft, then continue to next
             # loop iteration
@@ -34,23 +34,23 @@ def laundry(dirtyLaundry):
                 # then remove the item in the new list that matches "acres"
                 col.remove("acres")
                 # store the remaining item from the new size1 list (i.e. the value itself) into the original df location
-                dirtyLaundry.loc[i, j] = float(col[0]) * 43560.0
+                dirty_laundry.loc[i, j] = float(col[0]) * 43560.0
                 continue
 
     # convert Sell Price, Beds, Baths, Home Size, Year Built, and Lot Size columns into float type
-    dirtyLaundry["Sell Price"] = dirtyLaundry["Sell Price"].astype(float)
-    dirtyLaundry["Beds"] = dirtyLaundry["Beds"].astype(float)
-    dirtyLaundry["Baths"] = dirtyLaundry["Baths"].astype(float)
-    dirtyLaundry["Home Size"] = dirtyLaundry["Home Size"].astype(float)
-    dirtyLaundry["Year Built"] = dirtyLaundry["Year Built"].astype(float)
-    dirtyLaundry["Lot Size"] = dirtyLaundry["Lot Size"].astype(float)
+    dirty_laundry["Sell Price"] = dirty_laundry["Sell Price"].astype(float)
+    dirty_laundry["Beds"] = dirty_laundry["Beds"].astype(float)
+    dirty_laundry["Baths"] = dirty_laundry["Baths"].astype(float)
+    dirty_laundry["Home Size"] = dirty_laundry["Home Size"].astype(float)
+    dirty_laundry["Year Built"] = dirty_laundry["Year Built"].astype(float)
+    dirty_laundry["Lot Size"] = dirty_laundry["Lot Size"].astype(float)
 
-    # Log clean SoldHomeData
-    logToFile(__name__, dirtyLaundry, "INFO")
-    # Log clean SoldHomeData datatypes
-    logToFile(__name__, dirtyLaundry.dtypes, "INFO")
+    # Log cleaned data frame
+    logtofile(__name__, dirty_laundry, "INFO")
+    # Log cleaned data frame data types
+    logtofile(__name__, dirty_laundry.dtypes, "INFO")
 
-    print(dirtyLaundry)
+    print(dirty_laundry)
     print()
-
-    return dirtyLaundry
+    # return dirty_laundry, which is actually now cleaned
+    return dirty_laundry
