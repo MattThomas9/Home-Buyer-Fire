@@ -1,10 +1,10 @@
-from hbf.helpers.logger import logToFile
+from hbf.helpers.logtofile import logtofile
 import pandas as pd
 
 
-def soldHomeDF(SoldHomeDataList):
-    SoldHomeData = pd.DataFrame(
-        SoldHomeDataList,
+def list2frame(data_list):
+    data_frame = pd.DataFrame(
+        data_list,
         columns=[
             "Address",
             "Sell Price",
@@ -20,12 +20,12 @@ def soldHomeDF(SoldHomeDataList):
         ],
     )
 
-    # Print SoldHomeData to screen
+    # Print data_frame to screen
     pd.set_option(
         "display.max_rows", None, "display.max_columns", None, "display.width", None
     )
 
-    # Log dirty SoldHomeData
-    logToFile(__name__, SoldHomeData, "INFO")
+    # Log dirty data_frame
+    logtofile(__name__, data_frame, "INFO")
 
-    return SoldHomeData
+    return data_frame

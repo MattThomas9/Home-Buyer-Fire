@@ -1,21 +1,21 @@
 import sys
 
 
-def buildZillowURL(
-    PageType, PageNumber, NorthBoundary, SouthBoundary, EastBoundary, WestBoundary
+def buildzillowsearchpageurl(
+    page_type, page_number, north_boundary, south_boundary, east_boundary, west_boundary
 ):
-    if PageType.lower() == "recently sold":
-        if PageNumber is None or PageNumber == 0:
+    if page_type.lower() == "recently sold":
+        if page_number is None or page_number == 0:
             # Construct the Zillow Recently Sold Homes URL (first/initial page) using the search boundary.
-            ZillowURL = (
+            url = (
                 "https://www.zillow.com/homes/recently_sold/"
                 "?searchQueryState={"
                 "pagination:{},"
                 "mapBounds:{"
-                "west:" + str(WestBoundary) + ","
-                "east:" + str(EastBoundary) + ","
-                "south:" + str(SouthBoundary) + ","
-                "north:" + str(NorthBoundary) + "},"
+                "west:" + str(west_boundary) + ","
+                "east:" + str(east_boundary) + ","
+                "south:" + str(south_boundary) + ","
+                "north:" + str(north_boundary) + "},"
                 "isMapVisible:true,"
                 "mapZoom:8,"
                 "filterState:{"
@@ -32,19 +32,19 @@ def buildZillowURL(
                 "},"
                 "isListVisible:true}"
             )
-        elif PageNumber > 0:
+        elif page_number > 0:
             # Construct the Zillow Recently Sold Homes URL (subsequent pages) using the search boundary.
-            ZillowURL = (
+            url = (
                 "https://www.zillow.com/homes/recently_sold/"
-                + str(PageNumber + 1)
+                + str(page_number + 1)
                 + "_p/"
                 "?searchQueryState={"
-                "pagination:{currentPage:" + str(PageNumber + 1) + "},"
+                "pagination:{currentPage:" + str(page_number + 1) + "},"
                 "mapBounds:{"
-                "west:" + str(WestBoundary) + ","
-                "east:" + str(EastBoundary) + ","
-                "south:" + str(SouthBoundary) + ","
-                "north:" + str(NorthBoundary) + "},"
+                "west:" + str(west_boundary) + ","
+                "east:" + str(east_boundary) + ","
+                "south:" + str(south_boundary) + ","
+                "north:" + str(north_boundary) + "},"
                 "isMapVisible:true,"
                 "mapZoom:15,"
                 "filterState:{"
@@ -62,10 +62,12 @@ def buildZillowURL(
                 "isListVisible:true}"
             )
         else:
-            sys.exit("ERROR!!! PageNumber argument for buildZillowURL is not usable")
+            sys.exit(
+                "ERROR!!! page_number argument for buildzillowsearchpageurl is not usable"
+            )
     else:
         sys.exit(
-            "ERROR!!! buildZillowURL.py currently only works for 'Recently Sold'-page types. \n"
-            "Please ensure 'Recently Sold' is being passed as the PageType argument for this function"
+            "ERROR!!! buildzillowsearchpageurl.py currently only works for 'Recently Sold'-page types. \n"
+            "Please ensure 'Recently Sold' is being passed as the page_type argument for this function"
         )
-    return ZillowURL
+    return url

@@ -3,14 +3,14 @@ from rescrape.getNumZillowResults import getNumZillowResults
 from nose.tools import assert_equal
 
 
-# Test supporting `getAllSoldHomeZillowURLs.py` functionality.
+# Test supporting `getzillowurls.py` functionality.
 
 
 def test_getNumZillowResults():
     # This test is essentially an integration test as it tests the functionality
-    # of `getHTML` to obtain a valid parsable HTML file from Zillow, then checks
-    # whether or not `getNumZillowResults` returns the expected number of
-    # results. Note that testing of `getHTML` directly is tricky, and therefore
+    # of `gethtml` to obtain a valid parsable HTML file from Zillow, then checks
+    # whether or not `scraperesultcount` returns the expected number of
+    # results. Note that testing of `gethtml` directly is tricky, and therefore
     # not done directly, since it returns time-dependent data making it
     # impossible to define a static reference result.
     getHTMLtest = getHTML(

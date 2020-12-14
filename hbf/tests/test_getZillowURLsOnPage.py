@@ -4,14 +4,14 @@ import re
 from nose.tools import assert_equal
 
 
-# Test supporting `getAllSoldHomeZillowURLs.py` functionality.
+# Test supporting `getzillowurls.py` functionality.
 
 
 def test_getZillowURLsOnPage():
     # This test is essentially an integration test as it tests the functionality
-    # of `getHTML` to obtain a valid parsable HTML file from Zillow, then checks
-    # whether or not `getZillowURLsOnPage` returns the expected number of URLs.
-    # Note that testing of `getHTML` directly is tricky, and therefore not done
+    # of `gethtml` to obtain a valid parsable HTML file from Zillow, then checks
+    # whether or not `scrapehomeurls` returns the expected number of URLs.
+    # Note that testing of `gethtml` directly is tricky, and therefore not done
     # directly, since it returns time-dependent data making it impossible to
     # define a static reference result.
     getHTMLtest = getHTML(
@@ -25,7 +25,7 @@ def test_getZillowURLsOnPage():
         },
     )
     # For the purposes of the test, only look at first URL returned by
-    # `getZillowURLsOnPage`.
+    # `scrapehomeurls`.
     link = getZillowURLsOnPage(getHTMLtest, 1)
     # Check that the expected general Zillow URL form is returned.
     obs = bool(re.search(r"https://www.zillow.com/homedetails/.*/.*_zpid/", link[0]))
