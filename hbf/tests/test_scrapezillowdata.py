@@ -1,25 +1,23 @@
-from rescrape.soldHomeDF import soldHomeDF
+from scrape.scrapezillowdata import scrapezillowdata
 import pandas as pd
 from nose.tools import assert_equal
 
 
-def test_soldHomeDF():
-    obs = soldHomeDF(
+def test_scrapezillowdata():
+    obs = scrapezillowdata(
         [
-            [
-                "11705 College View Dr Silver Spring MD 20902",
-                "293000",
-                "2",
-                "2",
-                "1526 SqFt",
-                "Single Family",
-                "1951",
-                "Forced air",
-                "Central",
-                "No Data",
-                "6791 sqft",
-            ]
-        ]
+            "https://www.zillow.com/homedetails/11705-College-View-Dr-Silver-Spring-MD-20902/37316339_zpid/"
+        ],
+        {
+            "accept": "/",
+            "accept-encoding": "gzip, deflate, br",
+            "accept-language": "en-US,en;q=0.9",
+            "upgrade-insecure-requests": "1",
+            "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) "
+            "AppleWebKit/537.36 (KHTML, like Gecko) "
+            "Chrome/85.0.4183.102 "
+            "Safari/537.36",
+        },
     )
     exp = pd.DataFrame(
         [
@@ -28,12 +26,12 @@ def test_soldHomeDF():
                 "293000",
                 "2",
                 "2",
-                "1526 SqFt",
+                "1526 sqft",
                 "Single Family",
                 "1951",
                 "Forced air",
                 "Central",
-                "No Data",
+                "Garage",
                 "6791 sqft",
             ]
         ],

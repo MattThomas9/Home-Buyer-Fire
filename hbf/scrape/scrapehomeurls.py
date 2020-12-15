@@ -24,7 +24,7 @@ def scrapehomeurls(html, result_count, page_type):
             urls.append(url_info[j].find("a", class_="list-card-link")["href"])
     else:
         sys.exit(
-            "ERROR!!! scrapehomeurl.py currently only works for Zillow page types. \n"
+            "ERROR!!! scrapehomeurls.py currently only works for Zillow page types. \n"
             "Please ensure 'Zillow' is being passed as the page_type argument for this function"
         )
     return urls

@@ -3,7 +3,7 @@ from hbf.scrape.buildzillowsearchpageurl import buildzillowsearchpageurl
 from hbf.scrape.gethtml import gethtml
 from hbf.scrape.scrapepagecount import scrapepagecount
 from hbf.scrape.scraperesultcount import scraperesultcount
-from hbf.scrape.scrapehomeurl import scrapehomeurls
+from hbf.scrape.scrapehomeurls import scrapehomeurls
 
 
 def getzillowurls(
