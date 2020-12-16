@@ -30,6 +30,8 @@ def buildsearchbox(address, search_box_half_width):
         else:
             logtofile(__name__, "The address has been GeoCoded!", "INFO")
             break
+    mess = "The geocoded origin of the address is: " + str(repr(origin))
+    logtofile(__name__, mess, "INFO")
     # The search box coordinates are obtained via a geodesic measurement from the origin (e.g. user supplied address)
     # to the direct North, direct East, direct South, and direct West using the user supplied search_box_half_width.
     # The North Boundary thus becomes the latitude of the geodesic measurement from the origin, and so on.
