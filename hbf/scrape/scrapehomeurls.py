@@ -19,7 +19,7 @@ def scrapehomeurls(html, result_count, page_type):
         # the length of url_info will now be 2; therefore, we must also take the min of len(url_info) so that
         # we don't get an index out of bounds error.
         urls = []
-        for j in range(0, min(result_count, 40, len(url_info))):
+        for j in range(0, min(result_count, 40, len(url_info)-1)):
             # For each unique home URL, store the href value (actual URL link).
             urls.append(url_info[j].find("a", class_="list-card-link")["href"])
     else:

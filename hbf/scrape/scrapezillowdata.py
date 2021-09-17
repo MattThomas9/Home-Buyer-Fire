@@ -52,22 +52,23 @@ def scrapezillowdata(zillow_urls, header_input):
         # the item's text. If the key word is found in the item's text, then we store the text found in the item into
         # the appropriate variable while removing the unwanted characters. If the key word is not found, then the
         # appropriate variable will retain its initialization value of "n/a".
-        ds_bed_bath_living_area = home_html.find_all(
-            "span", class_="ds-bed-bath-living-area"
+        ds_bed_bath_living_area_container = home_html.find_all(
+            "span", class_="ds-bed-bath-living-area-container"
         )
         beds = "n/a"
         baths = "n/a"
         size = "n/a"
-        for item in ds_bed_bath_living_area:
-            if "bd" in item.text.lower():
-                beds = item.text.replace(" bd", "")
-                continue
-            if "ba" in item.text.lower():
-                baths = item.text.replace(" ba", "")
-                continue
-            if "square feet" in item.text.lower() or "sqft" in item.text.lower():
-                size = item.text.replace(",", "").replace("Square Feet", "sqft")
-                continue
+        for ds_bed_bath_living_area in ds_bed_bath_living_area_container:
+            for item in ds_bed_bath_living_area:
+                if "bd" in item.text.lower() and "--" not in item.text:
+                    beds = item.text.replace(" bd", "")
+                    continue
+                if "ba" in item.text.lower() and "--" not in item.text:
+                    baths = item.text.replace(" ba", "")
+                    continue
+                if "square feet" in item.text.lower() or "sqft" in item.text.lower():
+                    size = item.text.replace(",", "").replace("Square Feet", "sqft")
+                    continue
 
         # Next, we search for the home type, year built, heating, cooling, parking, and lot size. In Zillow, each one of
         # these variables is under a "li" class="ds-home-fact-list-item" tag. The find_all method will find each one of
@@ -90,65 +91,32 @@ def scrapezillowdata(zillow_urls, header_input):
         parking = "n/a"
         lot_size = "n/a"
         for item in ds_home_fact_list_items:
-            if (
-                "type"
-                in item.find(
-                    "span", class_="Text-c11n-8-11-1__aiai24-0 sc-pTWqp jMCspH"
-                ).text.lower()
-            ):
-                home_type = item.find(
-                    "span", class_="Text-c11n-8-11-1__aiai24-0 hqfqED"
-                ).text
+            item_data = item.find_all("span", class_=lambda s:s.startswith("Text-c11n-"))
+            if len(item_data) < 2:
+               continue
+
+            if ( "type:" in item_data[0].text.lower() ):
+                home_type = item_data[1].text
                 continue
-            if (
-                "year built"
-                in item.find(
-                    "span", class_="Text-c11n-8-11-1__aiai24-0 sc-pTWqp jMCspH"
-                ).text.lower()
-            ):
-                year_built = item.find(
-                    "span", class_="Text-c11n-8-11-1__aiai24-0 hqfqED"
-                ).text
+
+            if ( "year built:" in item_data[0].text.lower() ):
+                year_built = item_data[1].text
                 continue
-            if (
-                "heating"
-                in item.find(
-                    "span", class_="Text-c11n-8-11-1__aiai24-0 sc-pTWqp jMCspH"
-                ).text.lower()
-            ):
-                heating = item.find(
-                    "span", class_="Text-c11n-8-11-1__aiai24-0 hqfqED"
-                ).text
+
+            if ( "heating:" in item_data[0].text.lower() ):
+                heating = item_data[1].text
                 continue
-            if (
-                "cooling"
-                in item.find(
-                    "span", class_="Text-c11n-8-11-1__aiai24-0 sc-pTWqp jMCspH"
-                ).text.lower()
-            ):
-                cooling = item.find(
-                    "span", class_="Text-c11n-8-11-1__aiai24-0 hqfqED"
-                ).text
+
+            if ( "cooling:" in item_data[0].text.lower() ):
+                cooling = item_data[1].text
                 continue
-            if (
-                "parking"
-                in item.find(
-                    "span", class_="Text-c11n-8-11-1__aiai24-0 sc-pTWqp jMCspH"
-                ).text.lower()
-            ):
-                parking = item.find(
-                    "span", class_="Text-c11n-8-11-1__aiai24-0 hqfqED"
-                ).text
+
+            if ( "parking:" in item_data[0].text.lower() ):
+                parking = item_data[1].text
                 continue
-            if (
-                "lot"
-                in item.find(
-                    "span", class_="Text-c11n-8-11-1__aiai24-0 sc-pTWqp jMCspH"
-                ).text.lower()
-            ):
-                lot_size = item.find(
-                    "span", class_="Text-c11n-8-11-1__aiai24-0 hqfqED"
-                ).text.replace(",", "")
+
+            if ( "lot:" in item_data[0].text.lower() ):
+                lot_size = item_data[1].text.replace(",", "")
                 continue
 
         # Append home data information to list
